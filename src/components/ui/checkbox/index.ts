@@ -1,3 +1,3 @@
 export * from './Checkbox'
-export { Check } from '../../../assets/icon/Check'
+export { CheckIcon } from '@/assets/icon/CheckIcon'
 export { Typography } from '@/components/ui/typography'
