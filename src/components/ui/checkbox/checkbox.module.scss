@@ -1,0 +1,70 @@
+.wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  label {
+    cursor: pointer;
+    color: var(--color-light-100);
+  }
+}
+
+.checkbox {
+  cursor: pointer;
+
+  position: relative;
+  top: 0;
+
+  width: 18px;
+  height: 18px;
+
+  background-color: transparent;
+  border: 2px solid var(--color-light-900);
+  border-radius: 2px;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border-color: var(--color-dark-100);
+
+    & ~ label {
+      cursor: not-allowed;
+      color: var(--color-dark-100);
+    }
+  }
+
+  &:disabled::before {
+    display: none;
+  }
+
+  &:hover::before {
+    background-color: var(--color-dark-500);
+  }
+
+  &:focus-visible::before {
+    background-color: var(--color-dark-100);
+    outline: none;
+  }
+
+  &:active::before {
+    background-color: var(--color-dark-100);
+  }
+}
+
+.check {
+  position: absolute;
+  top: -1.5px;
+  left: -1.5px;
+}

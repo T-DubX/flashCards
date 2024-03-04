@@ -27,7 +27,9 @@ export const Typography = <T extends ElementType = 'p'>(props: TypographyProps<T
 
   return (
     <Component
-      className={`${theme === 'dark' ? s.typographyDark : s.typographyLight} ${s[variant]} ${className}`}
+      className={`${theme === 'dark' ? s.typographyDark : s.typographyLight} ${
+        s[variant]
+      } ${className}`}
       {...rest}
     />
   )
