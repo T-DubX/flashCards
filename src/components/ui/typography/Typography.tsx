@@ -6,7 +6,7 @@ export type TypographyProps<T extends ElementType> = {
   as?: T
   children?: ReactNode
   className?: string
-  theme: 'dark' | 'light'
+  theme?: 'dark' | 'light'
   variant?:
     | 'body1'
     | 'body2'
