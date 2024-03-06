@@ -1,38 +1,61 @@
+import { ComponentPropsWithoutRef } from 'react'
+
+import { Typography } from '@/components/ui/typography'
+
 import s from './select.module.scss'
 
-import { SelectRadix } from '.'
+import { ArrowDown, SelectRadix } from '.'
 
-export const Select = () => {
+type Option = {
+  disabled: boolean
+  value: string
+}
+
+export type Props = {
+  label?: string
+  options: Option[]
+} & ComponentPropsWithoutRef<typeof SelectRadix.Root>
+
+export const Select = (props: Props) => {
+  const { defaultValue, disabled, label, options, ...rest } = props
+
+  const itemsToChoose = options.map((option, idx) => (
+    <SelectRadix.Item className={s.item} disabled={option.disabled} key={idx} value={option.value}>
+      <SelectRadix.ItemText className={s.itemText}>{option.value}</SelectRadix.ItemText>
+    </SelectRadix.Item>
+  ))
+
   return (
-    <SelectRadix.Root>
-      <SelectRadix.Trigger className={s.trigger}>
-        <SelectRadix.Value className={s.value} />
-        <SelectRadix.Icon className={s.icon} />
-      </SelectRadix.Trigger>
+    <>
+      {label && (
+        <Typography
+          as={'span'}
+          className={`${s.label} ${disabled && s.disabled}`}
+          variant={'body2'}
+        >
+          {label}
+        </Typography>
+      )}
+      <SelectRadix.Root
+        defaultValue={defaultValue ?? options[0].value}
+        disabled={disabled}
+        {...rest}
+      >
+        <SelectRadix.Trigger className={s.trigger}>
+          <SelectRadix.Value className={s.value} />
+          <SelectRadix.Icon>
+            <ArrowDown />
+          </SelectRadix.Icon>
+        </SelectRadix.Trigger>
 
-      <SelectRadix.Portal>
-        <SelectRadix.Content className={s.content}>
-          <SelectRadix.ScrollUpButton className={s.upIcon} />
-          <SelectRadix.Viewport className={s.viewport}>
-            <SelectRadix.Item className={s.item} value={'hello'}>
-              <SelectRadix.ItemText className={s.itemText} />
-              <SelectRadix.ItemIndicator className={s.itemIndicator} />
-            </SelectRadix.Item>
-
-            <SelectRadix.Group className={s.group}>
-              <SelectRadix.Label className={s.label} />
-              <SelectRadix.Item className={s.item} value={'hello'}>
-                <SelectRadix.ItemText className={s.itemText} />
-                <SelectRadix.ItemIndicator className={s.itemIndicator} />
-              </SelectRadix.Item>
-            </SelectRadix.Group>
-
-            <SelectRadix.Separator className={s.separator} />
-          </SelectRadix.Viewport>
-          <SelectRadix.ScrollDownButton className={s.iconDown} />
-          <SelectRadix.Arrow className={s.arrow} />
-        </SelectRadix.Content>
-      </SelectRadix.Portal>
-    </SelectRadix.Root>
+        <SelectRadix.Portal>
+          <SelectRadix.Content className={s.content} position={'popper'}>
+            <SelectRadix.Viewport className={s.viewport}>
+              <SelectRadix.Group className={s.group}>{itemsToChoose}</SelectRadix.Group>
+            </SelectRadix.Viewport>
+          </SelectRadix.Content>
+        </SelectRadix.Portal>
+      </SelectRadix.Root>
+    </>
   )
 }
