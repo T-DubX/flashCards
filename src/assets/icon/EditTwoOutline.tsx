@@ -1,4 +1,4 @@
-export const CloseIcon = () => {
+export const EditTwoOutline = () => {
   return (
     <svg
       fill={'none'}
