@@ -1,4 +1,4 @@
-export const ArrowDown = () => {
+export const ArrowUp = () => {
   return (
     <svg
       fill={'none'}
