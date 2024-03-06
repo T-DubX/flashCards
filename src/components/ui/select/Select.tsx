@@ -1,10 +1,8 @@
 import { ComponentPropsWithoutRef } from 'react'
 
-import { Typography } from '@/components/ui/typography'
-
 import s from './select.module.scss'
 
-import { ArrowDown, SelectRadix } from '.'
+import { ArrowDown, SelectRadix, Typography } from '.'
 
 type Option = {
   disabled: boolean
