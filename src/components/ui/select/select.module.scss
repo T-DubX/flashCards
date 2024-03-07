@@ -6,6 +6,11 @@
   color: var(--color-dark-300);
 }
 
+.wrapperSelect {
+  display: flex;
+  flex-direction: column;
+}
+
 .trigger {
   display: flex;
   justify-content: space-between;

@@ -24,7 +24,7 @@ export const Select = (props: Props) => {
   ))
 
   return (
-    <>
+    <div className={s.wrapperSelect}>
       {label && (
         <Typography
           as={'span'}
@@ -54,6 +54,6 @@ export const Select = (props: Props) => {
           </SelectRadix.Content>
         </SelectRadix.Portal>
       </SelectRadix.Root>
-    </>
+    </div>
   )
 }
