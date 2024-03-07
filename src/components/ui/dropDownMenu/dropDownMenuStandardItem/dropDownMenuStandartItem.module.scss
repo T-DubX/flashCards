@@ -1,0 +1,29 @@
+.standardItem {
+  cursor: pointer;
+
+  display: flex;
+  gap: 6px;
+  align-items: center;
+
+  padding: 12px 15px;
+
+  //&:first-child {
+  //  padding-top: 0;
+  //}
+  //
+  //&:last-child {
+  //  padding-bottom: 0;
+  //}
+
+  .value {
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  p {
+    margin: 0;
+  }
+}

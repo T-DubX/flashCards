@@ -1,0 +1,17 @@
+.item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  padding: 12px 15px;
+
+  background-color: transparent;
+
+  p {
+    margin: 0;
+
+    &:last-child {
+      color: var(--color-dark-100);
+    }
+  }
+}
