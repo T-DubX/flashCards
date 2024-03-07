@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 import s from './card.module.scss'
 
 export type Props<T extends ElementType = 'div'> = {
-  as: T
+  as?: T
   children: ReactNode
 } & ComponentPropsWithoutRef<T>
 
