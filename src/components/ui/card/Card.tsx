@@ -11,7 +11,7 @@ export const Card = (props: Props) => {
   const { as: Component = 'div', children, className, title, ...rest } = props
 
   return (
-    <Component className={`${s.wrapperCard} ${className ? className : ''}`} {...rest}>
+    <Component className={`${className ? className : ''} ${s.wrapperCard} `} {...rest}>
       <div className={s.content}>{children}</div>
     </Component>
   )
