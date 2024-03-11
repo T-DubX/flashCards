@@ -1,5 +1,7 @@
 import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
+import clsx from 'clsx'
+
 import s from './card.module.scss'
 
 export type Props<T extends ElementType = 'div'> = {
@@ -10,8 +12,10 @@ export type Props<T extends ElementType = 'div'> = {
 export const Card = (props: Props) => {
   const { as: Component = 'div', children, className, title, ...rest } = props
 
+  const classNames = clsx(className && className, s.wrapperCard)
+
   return (
-    <Component className={`${className ? className : ''} ${s.wrapperCard} `} {...rest}>
+    <Component className={classNames} {...rest}>
       <div className={s.content}>{children}</div>
     </Component>
   )

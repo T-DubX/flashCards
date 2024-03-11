@@ -1,5 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react'
 
+import clsx from 'clsx'
+
 import s from './select.module.scss'
 
 import { ArrowDown, SelectRadix, Typography } from '.'
@@ -17,6 +19,8 @@ export type Props = {
 export const Select = (props: Props) => {
   const { defaultValue, disabled, label, options, ...rest } = props
 
+  const classNameForSpan = clsx(s.label, disabled && s.disabled)
+
   const itemsToChoose = options.map((option, idx) => (
     <SelectRadix.Item className={s.item} disabled={option.disabled} key={idx} value={option.value}>
       <SelectRadix.ItemText className={s.itemText}>{option.value}</SelectRadix.ItemText>
@@ -26,11 +30,7 @@ export const Select = (props: Props) => {
   return (
     <div className={s.wrapperSelect}>
       {label && (
-        <Typography
-          as={'span'}
-          className={`${s.label} ${disabled && s.disabled}`}
-          variant={'body2'}
-        >
+        <Typography as={'span'} className={classNameForSpan} variant={'body2'}>
           {label}
         </Typography>
       )}

@@ -4,6 +4,7 @@ import { SearchIcon } from '@/assets/icon/SearchIcon'
 import { VisibilityIcon } from '@/assets/icon/VisibilityIcon'
 import { VisibilityOffIcon } from '@/assets/icon/VisibilityOffIcon'
 import { Typography } from '@/components/ui/typography'
+import clsx from 'clsx'
 
 import s from './input.module.scss'
 
@@ -40,6 +41,8 @@ export const Input = (props: InputProps) => {
     setShowPassword(prev => !prev)
   }
 
+  const classNames = clsx(s.input, errorMessage && s.error)
+
   return (
     <div className={s.wrapper}>
       {label && (
@@ -53,7 +56,7 @@ export const Input = (props: InputProps) => {
       )}
       <div className={s.wrapperInput}>
         <input
-          className={`${s.input} ${errorMessage ? s.error : ''}`}
+          className={classNames}
           onChange={handleChangeInput}
           type={currentType}
           value={value}
