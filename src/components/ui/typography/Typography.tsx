@@ -8,7 +8,6 @@ export type TypographyProps<T extends ElementType> = {
   as?: T
   children?: ReactNode
   className?: string
-  theme?: 'dark' | 'light'
   variant?:
     | 'body1'
     | 'body2'
@@ -27,11 +26,7 @@ export type TypographyProps<T extends ElementType> = {
 export const Typography = <T extends ElementType = 'p'>(props: TypographyProps<T>) => {
   const { as: Component = 'p', className, theme = 'dark', variant = 'body1', ...rest } = props
 
-  const classNames = clsx(
-    theme === 'dark' ? s.typographyDark : s.typographyLight,
-    s[variant],
-    className
-  )
+  const classNames = clsx(s[variant], className)
 
   return <Component className={classNames} {...rest} />
 }
