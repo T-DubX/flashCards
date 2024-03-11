@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef, useEffect, useState } from 'react'
 
 import clsx from 'clsx'
 
@@ -17,8 +17,8 @@ export type Props = {
   options: Option[]
 } & ComponentPropsWithoutRef<typeof SelectRadix.Root>
 
-export const Select = (props: Props) => {
-  const { defaultValue, disabled, label, options, ...rest } = props
+export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, Props>((props, ref) => {
+  const { defaultValue, disabled, label, options, value, ...rest } = props
 
   const classNameForSpan = clsx(s.label, disabled && s.disabled)
 
@@ -36,11 +36,12 @@ export const Select = (props: Props) => {
         </Typography>
       )}
       <SelectRadix.Root
-        defaultValue={defaultValue ?? options[0].value}
+        defaultValue={defaultValue ?? options[0].label}
         disabled={disabled}
+        value={value}
         {...rest}
       >
-        <SelectRadix.Trigger className={s.trigger}>
+        <SelectRadix.Trigger className={s.trigger} ref={ref}>
           <SelectRadix.Value className={s.value} />
           <SelectRadix.Icon>
             <ArrowDown />
@@ -57,4 +58,4 @@ export const Select = (props: Props) => {
       </SelectRadix.Root>
     </div>
   )
-}
+})
