@@ -20,8 +20,7 @@ export const Slider = (props: Props) => {
         {value[0]}
       </Typography>
       <SliderRadix.Root
-        className={s.SliderRoot}
-        defaultValue={[10, 90]}
+        className={s.sliderRoot}
         max={max}
         min={min}
         minStepsBetweenThumbs={1}
@@ -29,11 +28,11 @@ export const Slider = (props: Props) => {
         step={1}
         value={value}
       >
-        <SliderRadix.Track className={s.SliderTrack}>
-          <SliderRadix.Range className={s.SliderRange} />
+        <SliderRadix.Track className={s.sliderTrack}>
+          <SliderRadix.Range className={s.sliderRange} />
         </SliderRadix.Track>
-        <SliderRadix.Thumb aria-label={'Volume'} className={s.SliderThumb} />
-        <SliderRadix.Thumb aria-label={'Volume'} className={s.SliderThumb} />
+        <SliderRadix.Thumb aria-label={'Volume'} className={s.sliderThumb} />
+        <SliderRadix.Thumb aria-label={'Volume'} className={s.sliderThumb} />
       </SliderRadix.Root>
 
       <Typography as={'span'} className={s.sliderValue}>
