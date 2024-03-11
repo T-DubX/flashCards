@@ -22,7 +22,7 @@ export const Checkbox = (props: CheckboxProps) => {
           <CheckIcon />
         </CheckboxRadix.Indicator>
       </CheckboxRadix.Root>
-      <Typography as={'label'} htmlFor={id} theme={'dark'} variant={'body2'}>
+      <Typography as={'label'} htmlFor={id} variant={'body2'}>
         {label}
       </Typography>
     </div>
