@@ -18,9 +18,9 @@ type Story = StoryObj<typeof meta>
 export const Primary: Story = {
   args: {
     options: [
-      { disabled: false, value: 'hello1' },
-      { disabled: false, value: 'hello2' },
-      { disabled: false, value: 'hello3' },
+      { disabled: false, label: 'hello1', value: 'hello1' },
+      { disabled: false, label: 'hello1', value: 'hello2' },
+      { disabled: false, label: 'hello1', value: 'hello3' },
     ],
   },
 }
@@ -29,9 +29,9 @@ export const PrimaryWithLabel: Story = {
     label: 'label',
 
     options: [
-      { disabled: false, value: 'hello1' },
-      { disabled: false, value: 'hello2' },
-      { disabled: false, value: 'hello3' },
+      { disabled: false, label: 'hello1', value: 'hello1' },
+      { disabled: false, label: 'hello1', value: 'hello2' },
+      { disabled: false, label: 'hello1', value: 'hello3' },
     ],
   },
 }
@@ -43,9 +43,9 @@ export const Disabled: Story = {
     label: 'label',
 
     options: [
-      { disabled: false, value: 'hello1' },
-      { disabled: false, value: 'hello2' },
-      { disabled: false, value: 'hello3' },
+      { disabled: false, label: 'hello1', value: 'hello1' },
+      { disabled: false, label: 'hello1', value: 'hello2' },
+      { disabled: false, label: 'hello1', value: 'hello3' },
     ],
   },
 }

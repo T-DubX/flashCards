@@ -8,6 +8,7 @@ import { ArrowDown, SelectRadix, Typography } from '.'
 
 type Option = {
   disabled: boolean
+  label: string
   value: string
 }
 
@@ -23,7 +24,7 @@ export const Select = (props: Props) => {
 
   const itemsToChoose = options.map((option, idx) => (
     <SelectRadix.Item className={s.item} disabled={option.disabled} key={idx} value={option.value}>
-      <SelectRadix.ItemText className={s.itemText}>{option.value}</SelectRadix.ItemText>
+      <SelectRadix.ItemText className={s.itemText}>{option.label}</SelectRadix.ItemText>
     </SelectRadix.Item>
   ))
 
