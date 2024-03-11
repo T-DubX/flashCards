@@ -124,7 +124,10 @@ export const ChildrenInputs: Story = {
               width: '494px',
             }}
           >
-            <Select label={'select'} options={[{ disabled: false, value: 'hello' }]} />
+            <Select
+              label={'select'}
+              options={[{ disabled: false, label: 'hello', value: 'hello' }]}
+            />
             <Input label={'input'} />
             <Input label={'input'} />
             <Checkbox id={'1'} label={'chekcbox'} />
