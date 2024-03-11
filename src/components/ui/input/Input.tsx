@@ -1,4 +1,4 @@
-import { ChangeEvent, ComponentPropsWithoutRef, useEffect, useState } from 'react'
+import { ChangeEvent, ComponentPropsWithoutRef, forwardRef, useEffect, useState } from 'react'
 
 import { SearchIcon } from '@/assets/icon/SearchIcon'
 import { VisibilityIcon } from '@/assets/icon/VisibilityIcon'
@@ -11,73 +11,75 @@ import s from './input.module.scss'
 export type InputProps = {
   errorMessage?: string
   label?: string
-  onChange?: (value: string) => void
+  onValueChange?: (value: string) => void
   type?: 'password' | 'search' | 'text'
-} & Omit<ComponentPropsWithoutRef<'input'>, 'onChange'>
-export const Input = (props: InputProps) => {
-  const { errorMessage, label, onChange, type = 'text', value, ...rest } = props
+} & ComponentPropsWithoutRef<'input'>
 
-  const [showPassword, setShowPassword] = useState(false)
-  const [currentType, setCurrentType] = useState(type)
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ errorMessage, label, onValueChange, type = 'text', value, ...rest }, ref) => {
+    const [showPassword, setShowPassword] = useState(false)
+    const [currentType, setCurrentType] = useState(type)
 
-  const isShowSearch = type === 'search'
-  const isShowButton = type === 'password'
+    const isShowSearch = type === 'search'
+    const isShowButton = type === 'password'
 
-  useEffect(() => {
-    if (isShowButton && showPassword) {
-      setCurrentType('text')
-    } else if (isShowButton && !showPassword) {
-      setCurrentType('password')
+    useEffect(() => {
+      if (isShowButton && showPassword) {
+        setCurrentType('text')
+      } else if (isShowButton && !showPassword) {
+        setCurrentType('password')
+      }
+    }, [isShowButton, showPassword])
+
+    const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+      if (onValueChange) {
+        onValueChange(e.currentTarget.value)
+      }
     }
-  }, [isShowButton, showPassword])
 
-  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    if (onChange) {
-      onChange(e.currentTarget.value)
+    const handleSetShowPassword = () => {
+      setShowPassword(prev => !prev)
     }
-  }
 
-  const handleSetShowPassword = () => {
-    setShowPassword(prev => !prev)
-  }
+    const classNames = clsx(s.input, errorMessage && s.error)
 
-  const classNames = clsx(s.input, errorMessage && s.error)
-
-  return (
-    <div className={s.wrapper}>
-      {label && (
-        <Typography
-          as={'label'}
-          className={`${s.label} ${rest.disabled ? s.disabled : ''}`}
-          variant={'body2'}
-        >
-          {label}
-        </Typography>
-      )}
-      <div className={s.wrapperInput}>
-        <input
-          className={classNames}
-          onChange={handleChangeInput}
-          type={currentType}
-          value={value}
-          {...rest}
-        />
-        {isShowSearch && (
-          <div className={s.wrapperSearchIcon}>
-            <SearchIcon />
-          </div>
-        )}
-        {errorMessage && (
-          <Typography as={'span'} className={s.errorMessage} variant={'caption'}>
-            {errorMessage}
+    return (
+      <div className={s.wrapper}>
+        {label && (
+          <Typography
+            as={'label'}
+            className={`${s.label} ${rest.disabled ? s.disabled : ''}`}
+            variant={'body2'}
+          >
+            {label}
           </Typography>
         )}
-        {isShowButton && (
-          <button className={s.inputBtn} onClick={handleSetShowPassword}>
-            {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-          </button>
-        )}
+        <div className={s.wrapperInput}>
+          <input
+            className={classNames}
+            onChange={handleChangeInput}
+            ref={ref}
+            type={currentType}
+            value={value}
+            {...rest}
+          />
+          {isShowSearch && (
+            <div className={s.wrapperSearchIcon}>
+              <SearchIcon />
+            </div>
+          )}
+          {errorMessage && (
+            <Typography as={'span'} className={s.errorMessage} variant={'caption'}>
+              {errorMessage}
+            </Typography>
+          )}
+          {isShowButton && (
+            <button className={s.inputBtn} onClick={handleSetShowPassword}>
+              {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+            </button>
+          )}
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
+)
