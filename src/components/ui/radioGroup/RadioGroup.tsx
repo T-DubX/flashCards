@@ -10,12 +10,12 @@ type Option = {
   value: string
 }
 
-export type Props = {
+export type RadioProps = {
   disabledAll?: boolean
   options: Option[]
 } & ComponentPropsWithoutRef<typeof RadioGroupRadix.Root>
 
-export const RadioGroup = forwardRef<ElementRef<typeof RadioGroupRadix.Root>, Props>(
+export const RadioGroup = forwardRef<ElementRef<typeof RadioGroupRadix.Root>, RadioProps>(
   ({ disabledAll, options, ...rest }, ref) => {
     return (
       <div>

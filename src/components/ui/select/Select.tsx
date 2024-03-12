@@ -12,12 +12,12 @@ type Option = {
   value: string
 }
 
-export type Props = {
+export type SelectProps = {
   label?: string
   options: Option[]
 } & ComponentPropsWithoutRef<typeof SelectRadix.Root>
 
-export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, Props>((props, ref) => {
+export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProps>((props, ref) => {
   const { defaultValue, disabled, label, options, value, ...rest } = props
 
   const classNameForSpan = clsx(s.label, disabled && s.disabled)
