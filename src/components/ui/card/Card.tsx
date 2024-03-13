@@ -16,7 +16,7 @@ export const Card = (props: Props) => {
 
   return (
     <Component className={classNames} {...rest}>
-      <div className={s.content}>{children}</div>
+      {children}
     </Component>
   )
 }
