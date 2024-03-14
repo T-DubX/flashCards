@@ -1,0 +1,67 @@
+.card {
+  padding: 33px 36px 25px 27px;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 357px;
+
+    .signInHeader {
+      margin-top: 0;
+      margin-bottom: 27px;
+      padding-top: 0;
+
+      font-size: var(--font-size-xxl);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-l);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .wrapperInputs {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 9px;
+    }
+
+    .checkbox {
+      margin-top: 9px;
+    }
+
+    .signInBtn {
+      margin-bottom: 20px;
+    }
+
+    .wrapperForgotPass {
+      cursor: pointer;
+      align-self: flex-end;
+      margin-top: 6px;
+      margin-bottom: 60px;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .description {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      align-items: center;
+
+      .title {
+        margin: 0;
+      }
+
+      .signUpLink {
+        padding: 0;
+      }
+    }
+  }
+}
