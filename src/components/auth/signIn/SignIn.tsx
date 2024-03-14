@@ -36,7 +36,7 @@ export const SignIn = ({ onSubmit }: SignInProps) => {
   return (
     <Card className={s.card}>
       <div className={s.content}>
-        <Typography className={s.signInHeader} variant={'body1'}>
+        <Typography className={s.signInHeader} variant={'h1'}>
           Sign In
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
