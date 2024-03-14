@@ -1,13 +1,11 @@
 import { useForm } from 'react-hook-form'
 
-import { Card } from '@/components/ui/card/Card'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import s from '@/components/auth/signUp/signUp.module.scss'
 
-import { FormInput, Typography } from '.'
-import { Button } from '../signIn'
+import { Button, Card, FormInput, Typography } from '.'
 
 type Props = {
   onSubmit: (data: Omit<FormType, 'passwordConfirmation'>) => void
