@@ -41,7 +41,7 @@ export const SignUp = (props: Props) => {
   return (
     <Card className={s.card}>
       <div className={s.content}>
-        <Typography className={s.signUpHeader} variant={'body1'}>
+        <Typography className={s.signUpHeader} variant={'h1'}>
           Sign Up
         </Typography>
         <form onSubmit={handleSubmit(props.onSubmit)}>
