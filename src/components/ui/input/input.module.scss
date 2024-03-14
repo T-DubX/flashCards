@@ -150,5 +150,7 @@
 }
 
 .errorMessage {
+  position: absolute;
+  bottom: -18px;
   color: var(--color-danger-300);
 }
