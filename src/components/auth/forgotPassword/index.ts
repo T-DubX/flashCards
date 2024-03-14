@@ -1,2 +1,5 @@
 export { ForgotPassword } from '@/components/auth/forgotPassword/ForgotPassword'
+export { Button } from '@/components/ui/button/button'
 export { Card } from '@/components/ui/card/Card'
+export { FormInput } from '@/components/ui/formComponents/formInput/FormInput'
+export { Typography } from '@/components/ui/typography/Typography'

@@ -5,8 +5,7 @@ import { z } from 'zod'
 
 import s from './forgotPassword.module.scss'
 
-import { Card } from '.'
-import { Button, FormInput, Typography } from '../signIn'
+import { Button, Card, FormInput, Typography } from '.'
 
 type Props = {
   onSubmit: (data: FormValues) => void
