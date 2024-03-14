@@ -74,7 +74,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </Typography>
           )}
           {isShowButton && (
-            <button className={s.inputBtn} onClick={handleSetShowPassword}>
+            <button className={s.inputBtn} onClick={handleSetShowPassword} type={'button'}>
               {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </button>
           )}
