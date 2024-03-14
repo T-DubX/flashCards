@@ -4,10 +4,10 @@
   .content {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 348px;
 
     .signInHeader {
+      align-self: center;
       margin-top: 0;
       margin-bottom: 27px;
       padding-top: 0;
@@ -16,7 +16,6 @@
     form {
       display: flex;
       flex-direction: column;
-      width: 100%;
     }
 
     .wrapperInputs {
