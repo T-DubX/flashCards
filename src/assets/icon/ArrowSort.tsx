@@ -12,6 +12,7 @@ export const ArrowSort = ({ className, onClick, ...rest }: Props) => {
       viewBox={'0 0 12 12'}
       width={'12'}
       xmlns={'http://www.w3.org/2000/svg'}
+      {...rest}
     >
       <path
         d={

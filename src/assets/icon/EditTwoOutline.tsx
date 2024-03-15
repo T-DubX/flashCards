@@ -12,6 +12,7 @@ export const EditTwoOutline = ({ className, onClick, ...rest }: Props) => {
       viewBox={'0 0 16 16'}
       width={'16'}
       xmlns={'http://www.w3.org/2000/svg'}
+      {...rest}
     >
       <g clipPath={'url(#clip0_5928_6702)'}>
         <path

@@ -12,6 +12,7 @@ export const More = ({ className, onClick, ...rest }: Props) => {
       viewBox={'0 0 24 24'}
       width={'24'}
       xmlns={'http://www.w3.org/2000/svg'}
+      {...rest}
     >
       <circle cx={'12'} cy={'12'} r={'8.5'} stroke={'white'} />
       <g clipPath={'url(#clip0_52363_14059)'}>
