@@ -22,5 +22,6 @@ export const Default: Story = {
       email: 'person@mail.ru',
       name: 'Joen Dath',
     },
+    updateNickname: (nickName: { nickname: string }) => console.log(nickName),
   },
 }

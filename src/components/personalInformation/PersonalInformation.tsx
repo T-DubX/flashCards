@@ -7,6 +7,7 @@ import s from './personalInformation.module.scss'
 
 import { AvatarUploader } from './avatarUploader/AvatarUploader'
 import { ProfileInfo } from './profileInfo/ProfileInfo'
+import { FormValues, ProfileInfoEditing } from './profileInfoEditing/ProfileInfoEditing'
 
 type ProfileData = {
   avatar?: string
@@ -15,14 +16,16 @@ type ProfileData = {
 }
 
 export type PersonalInformationProps = {
-  data: ProfileData
+  data?: ProfileData
   logout: () => void
+  updateNickname: (data: FormValues) => void
 }
 
-export const PersonalInformation = ({ data, logout }: PersonalInformationProps) => {
+export const PersonalInformation = ({ data, logout, updateNickname }: PersonalInformationProps) => {
   const [edit, setEdit] = useState(false)
 
-  const activeEditMode = () => setEdit(true)
+  const activateEditMode = () => setEdit(true)
+  const deactivateEditMode = () => setEdit(false)
 
   return (
     <Card className={s.card}>
@@ -31,10 +34,14 @@ export const PersonalInformation = ({ data, logout }: PersonalInformationProps) 
       </Typography>
       <AvatarUploader className={s.avatar} editable={!edit} />
       {edit ? (
-        <div>Edit Mode</div>
+        <ProfileInfoEditing
+          deactivateEditMode={deactivateEditMode}
+          initialValue={data?.name}
+          updateNickname={updateNickname}
+        />
       ) : (
         <ProfileInfo
-          activeEditMode={activeEditMode}
+          activeEditMode={activateEditMode}
           email={data?.email}
           logout={logout}
           name={data?.name}
