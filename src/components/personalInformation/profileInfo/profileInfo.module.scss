@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .wrapperName {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    justify-content: center;
+
+    .name {
+      margin: 0;
+    }
+
+    .edit {
+      cursor: pointer;
+      margin: 0;
+    }
+  }
+
+  .email {
+    margin: 0;
+    margin-bottom: 13px;
+    color: var(--color-dark-100);
+    text-align: center;
+  }
+}
