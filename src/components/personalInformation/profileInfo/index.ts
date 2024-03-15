@@ -1,1 +1,5 @@
 export * from '@/components/personalInformation/profileInfo'
+export { EditTwoOutline } from '@/assets/icon/EditTwoOutline'
+export { LogOutIcon } from '@/assets/icon/LogOutIcon'
+export { Button } from '@/components/ui/button/button'
+export { Typography } from '@/components/ui/typography/Typography'

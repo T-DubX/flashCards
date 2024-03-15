@@ -1,8 +1,6 @@
-import { EditTwoOutline } from '@/assets/icon/EditTwoOutline'
-import { LogOutIcon } from '@/assets/icon/LogOutIcon'
-import { Button, Typography } from '@/components/auth/checkEmail'
-
 import s from './profileInfo.module.scss'
+
+import { Button, EditTwoOutline, LogOutIcon, Typography } from '.'
 
 type Props = {
   activeEditMode: () => void
