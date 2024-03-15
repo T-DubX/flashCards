@@ -17,3 +17,9 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {},
 }
+
+export const WithImg: Story = {
+  args: {
+    src: 'https://images.pexels.com/photos/3794359/pexels-photo-3794359.jpeg?auto=compress&cs=tinysrgb&w=600',
+  },
+}

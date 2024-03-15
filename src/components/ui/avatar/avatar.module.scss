@@ -1,0 +1,28 @@
+.wrapperAvatar {
+  user-select: none;
+
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--color-dark-500);
+  border-radius: 100%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.small {
+  width: 36px;
+  height: 36px;
+}
+
+.large {
+  width: 96px;
+  height: 96px;
+}
