@@ -1,8 +1,14 @@
-export const CheckIcon = () => {
+import { ComponentPropsWithRef } from 'react'
+
+type Props = ComponentPropsWithRef<'svg'>
+
+export const CheckIcon = ({ className, onClick, ...rest }: Props) => {
   return (
     <svg
+      className={className}
       fill={'none'}
       height={'18'}
+      onClick={onClick}
       viewBox={'0 0 18 18'}
       width={'18'}
       xmlns={'http://www.w3.org/2000/svg'}

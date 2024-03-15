@@ -1,8 +1,14 @@
-export const ArrowSort = () => {
+import { ComponentPropsWithRef } from 'react'
+
+type Props = ComponentPropsWithRef<'svg'>
+
+export const ArrowSort = ({ className, onClick, ...rest }: Props) => {
   return (
     <svg
+      className={className}
       fill={'none'}
       height={'12'}
+      onClick={onClick}
       viewBox={'0 0 12 12'}
       width={'12'}
       xmlns={'http://www.w3.org/2000/svg'}

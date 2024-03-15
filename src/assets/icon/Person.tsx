@@ -1,8 +1,14 @@
-export const Person = () => {
+import { ComponentPropsWithRef } from 'react'
+
+type Props = ComponentPropsWithRef<'svg'>
+
+export const Person = ({ className, onClick, ...rest }: Props) => {
   return (
     <svg
+      className={className}
       fill={'none'}
       height={'16'}
+      onClick={onClick}
       viewBox={'0 0 16 16'}
       width={'16'}
       xmlns={'http://www.w3.org/2000/svg'}

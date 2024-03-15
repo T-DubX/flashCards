@@ -1,8 +1,14 @@
-export const VisibilityOffIcon = () => {
+import { ComponentPropsWithRef } from 'react'
+
+type Props = ComponentPropsWithRef<'svg'>
+
+export const VisibilityOffIcon = ({ className, onClick, ...rest }: Props) => {
   return (
     <svg
+      className={className}
       fill={'none'}
       height={'20'}
+      onClick={onClick}
       viewBox={'0 0 24 24'}
       width={'20'}
       xmlns={'http://www.w3.org/2000/svg'}

@@ -1,8 +1,14 @@
-export const Email = () => {
+import { ComponentPropsWithRef } from 'react'
+
+type Props = ComponentPropsWithRef<'svg'>
+
+export const Email = ({ className, onClick, ...rest }: Props) => {
   return (
     <svg
+      className={className}
       fill={'none'}
       height={'96'}
+      onClick={onClick}
       viewBox={'0 0 96 96'}
       width={'96'}
       xmlns={'http://www.w3.org/2000/svg'}
