@@ -9,7 +9,7 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Components/ForgotPassword',
+  title: 'Components/auth/ForgotPassword',
 } satisfies Meta<typeof ForgotPassword>
 
 export default meta

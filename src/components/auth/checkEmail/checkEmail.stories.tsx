@@ -9,7 +9,7 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Components/CheckEmail',
+  title: 'Components/auth/CheckEmail',
 } satisfies Meta<typeof CheckEmail>
 
 export default meta

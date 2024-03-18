@@ -9,7 +9,7 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Components/SignUp',
+  title: 'Components/auth/SignUp',
 } satisfies Meta<typeof SignUp>
 
 export default meta
