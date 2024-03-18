@@ -16,12 +16,17 @@ export type SelectProps = {
   className?: string
   label?: string
   options: Option[]
+  pagination?: boolean
 } & ComponentPropsWithoutRef<typeof SelectRadix.Root>
 
 export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProps>((props, ref) => {
-  const { className, defaultValue, disabled, label, options, value, ...rest } = props
+  const { className, defaultValue, disabled, label, options, pagination, value, ...rest } = props
 
-  const classNameForSpan = clsx(s.label, disabled && s.disabled)
+  const classNames = {
+    content: clsx(s.paginationContent, s.content),
+    label: clsx(s.label, disabled && s.disabled),
+    trigger: clsx(s.paginationTrigger, s.trigger),
+  }
 
   const itemsToChoose = options.map((option, idx) => (
     <SelectRadix.Item className={s.item} disabled={option.disabled} key={idx} value={option.value}>
@@ -32,7 +37,7 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProp
   return (
     <div className={clsx(s.wrapperSelect, className)}>
       {label && (
-        <Typography as={'span'} className={classNameForSpan} variant={'body2'}>
+        <Typography as={'span'} className={classNames.label} variant={'body2'}>
           {label}
         </Typography>
       )}
@@ -42,7 +47,7 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProp
         value={value}
         {...rest}
       >
-        <SelectRadix.Trigger className={s.trigger} ref={ref}>
+        <SelectRadix.Trigger className={classNames.trigger} ref={ref}>
           <SelectRadix.Value className={s.value} />
           <SelectRadix.Icon>
             <ArrowDown />
@@ -50,7 +55,7 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProp
         </SelectRadix.Trigger>
 
         <SelectRadix.Portal>
-          <SelectRadix.Content className={s.content} position={'popper'}>
+          <SelectRadix.Content className={classNames.content} position={'popper'}>
             <SelectRadix.Viewport className={s.viewport}>
               <SelectRadix.Group className={s.group}>{itemsToChoose}</SelectRadix.Group>
             </SelectRadix.Viewport>
