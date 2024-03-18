@@ -7,7 +7,7 @@ import s from './select.module.scss'
 import { ArrowDown, SelectRadix, Typography } from '.'
 
 type Option = {
-  disabled: boolean
+  disabled?: boolean
   label: string
   value: string
 }
