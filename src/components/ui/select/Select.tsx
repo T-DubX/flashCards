@@ -23,9 +23,9 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProp
   const { className, defaultValue, disabled, label, options, pagination, value, ...rest } = props
 
   const classNames = {
-    content: clsx(s.paginationContent, s.content),
+    content: clsx(pagination && s.paginationContent, s.content),
     label: clsx(s.label, disabled && s.disabled),
-    trigger: clsx(s.paginationTrigger, s.trigger),
+    trigger: clsx(pagination && s.paginationTrigger, s.trigger),
   }
 
   const itemsToChoose = options.map((option, idx) => (
