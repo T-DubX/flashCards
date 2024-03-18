@@ -42,7 +42,7 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProp
         </Typography>
       )}
       <SelectRadix.Root
-        defaultValue={defaultValue ?? options[0].label}
+        defaultValue={defaultValue ?? options[0].value}
         disabled={disabled}
         value={value}
         {...rest}
