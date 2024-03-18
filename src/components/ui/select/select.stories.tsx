@@ -49,3 +49,14 @@ export const Disabled: Story = {
     ],
   },
 }
+
+export const ForPagination: Story = {
+  args: {
+    options: [
+      { disabled: false, label: '1', value: 'hello1' },
+      { disabled: false, label: '20', value: 'hello2' },
+      { disabled: false, label: '300', value: 'hello3' },
+    ],
+    pagination: true,
+  },
+}
