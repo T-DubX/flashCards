@@ -94,7 +94,7 @@ export const Pagination = ({
       </button>
       <Typography as={'div'} className={s.wrapperSelect} variant={'body2'}>
         Показать
-        <Select {...rest} />
+        <Select {...rest} pagination />
         на странице
       </Typography>
     </div>
