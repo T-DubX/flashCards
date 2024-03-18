@@ -8,7 +8,7 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Components/SignIn',
+  title: 'Components/auth/SignIn',
 } satisfies Meta<typeof SignIn>
 
 export default meta

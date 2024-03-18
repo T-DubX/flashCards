@@ -9,7 +9,7 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Components/CreateNewPassword',
+  title: 'Components/auth/CreateNewPassword',
 } satisfies Meta<typeof CreateNewPassword>
 
 export default meta
