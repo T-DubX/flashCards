@@ -13,12 +13,13 @@ type Option = {
 }
 
 export type SelectProps = {
+  className?: string
   label?: string
   options: Option[]
 } & ComponentPropsWithoutRef<typeof SelectRadix.Root>
 
 export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProps>((props, ref) => {
-  const { defaultValue, disabled, label, options, value, ...rest } = props
+  const { className, defaultValue, disabled, label, options, value, ...rest } = props
 
   const classNameForSpan = clsx(s.label, disabled && s.disabled)
 
@@ -29,7 +30,7 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProp
   ))
 
   return (
-    <div className={s.wrapperSelect}>
+    <div className={clsx(s.wrapperSelect, className)}>
       {label && (
         <Typography as={'span'} className={classNameForSpan} variant={'body2'}>
           {label}
