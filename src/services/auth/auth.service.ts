@@ -11,3 +11,5 @@ export const authService = baseApi.injectEndpoints({
     }),
   }),
 })
+
+export const { useGetMeQuery } = authService
