@@ -9,5 +9,5 @@ export const baseApi = createApi({
     },
   }),
   endpoints: () => ({}),
-  tagTypes: ['Decks'],
+  tagTypes: ['Decks', 'Me'],
 })
