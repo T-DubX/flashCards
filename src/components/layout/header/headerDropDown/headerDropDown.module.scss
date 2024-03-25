@@ -1,6 +1,10 @@
 .avatar {
   width: 36px;
   height: 36px;
-  background-color: var(--color-accent-900);
-  border-radius: 50%;
+}
+
+.wrapperDropDown {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

@@ -8,7 +8,7 @@ import {
   Separator,
   Typography,
 } from '@/components/ui/dropDownMenu'
-import { DropdownMenu } from '@radix-ui/react-dropdown-menu'
+import { DropDownMenu } from '@/components/ui/dropDownMenu/DropDownMenu'
 
 import s from './headerDropDown.module.scss'
 
@@ -18,21 +18,29 @@ type Props = {
 }
 
 export const HeaderDropDown = ({ logout, profileData }: Props) => {
+  const trigger = <Avatar className={s.avatar} src={profileData.avatar} />
+
   return (
-    <DropdownMenu>
-      <DropDownMenuItem>
-        {profileData.avatar ? (
-          <Avatar src={profileData.avatar} />
-        ) : (
-          <div className={s.avatar}></div>
-        )}
-        <Typography variant={'subtitle2'}>{profileData.name}</Typography>
-        <Typography variant={'caption'}>{profileData.email}</Typography>
-      </DropDownMenuItem>
-      <Separator />
-      <DropDownMenuStandardItem icon={<Person />} value={'My Profile'} />
-      <Separator />
-      <DropDownMenuStandardItem icon={<LogOutIcon />} onClick={logout} value={'Sing Out'} />
-    </DropdownMenu>
+    <div className={s.wrapperDropDown}>
+      <Typography className={s.profileName} variant={'subtitle1'}>
+        {profileData.name}
+      </Typography>
+      <DropDownMenu align={'end'} trigger={trigger}>
+        <DropDownMenuItem>
+          <Avatar className={s.avatar} src={profileData.avatar} />
+
+          <div>
+            <Typography variant={'subtitle2'}>{profileData.name}</Typography>
+            <Typography className={s.profileEmail} variant={'caption'}>
+              {profileData.email}
+            </Typography>
+          </div>
+        </DropDownMenuItem>
+        <Separator />
+        <DropDownMenuStandardItem icon={<Person />} value={'My Profile'} />
+        <Separator />
+        <DropDownMenuStandardItem icon={<LogOutIcon />} onClick={logout} value={'Sing Out'} />
+      </DropDownMenu>
+    </div>
   )
 }
