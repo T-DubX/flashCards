@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
-import { useGetMeQuery } from '@/services/auth'
+import { useAppOutletContext } from '@/common/hooks/useOutletContext'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -24,12 +24,18 @@ const privateRoutes: RouteObject[] = [
 
 export const router = createBrowserRouter([
   {
-    children: privateRoutes,
-    element: <PrivateRoutes />,
-  },
-  {
-    children: publicRoutes,
-    element: <PublicRoutes />,
+    children: [
+      {
+        children: privateRoutes,
+        element: <PrivateRoutes />,
+      },
+      {
+        children: publicRoutes,
+        element: <PublicRoutes />,
+      },
+    ],
+    element: <div>Layout</div>,
+    path: '/',
   },
 ])
 
@@ -38,15 +44,13 @@ export const Router = () => {
 }
 
 function PrivateRoutes() {
-  const { isError } = useGetMeQuery()
-  const isAuthenticated = !isError
+  const { isAuthenticated } = useAppOutletContext()
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
 }
 
 function PublicRoutes() {
-  const { isError } = useGetMeQuery()
-  const isAuthenticated = !isError
+  const { isAuthenticated } = useAppOutletContext()
 
   return isAuthenticated ? <Navigate to={'/'} /> : <Outlet />
 }
