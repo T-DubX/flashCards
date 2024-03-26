@@ -1,5 +1,11 @@
+import clsx from 'clsx'
+
 import s from './spinner.module.scss'
 
-export const Spinner = () => {
-  return <div className={s.loader}></div>
+type Props = {
+  className: string
+}
+
+export const Spinner = ({ className }: Props) => {
+  return <div className={clsx(s.loader, className)}></div>
 }
