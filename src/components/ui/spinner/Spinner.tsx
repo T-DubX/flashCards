@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import s from './spinner.module.scss'
 
 type Props = {
-  className: string
+  className?: string
 }
 
 export const Spinner = ({ className }: Props) => {
