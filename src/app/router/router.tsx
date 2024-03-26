@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 
 import { useAppOutletContext } from '@/common/hooks/useOutletContext'
+import { Layout } from '@/components/layout'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -34,7 +35,7 @@ export const router = createBrowserRouter([
         element: <PublicRoutes />,
       },
     ],
-    element: <div>Layout</div>,
+    element: <Layout />,
     path: '/',
   },
 ])
