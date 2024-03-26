@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { Logo } from '@/assets/icon/Logo'
+import { Container } from '@/components/container'
 import { HeaderDropDown } from '@/components/layout/header/headerDropDown'
 import { Button } from '@/components/ui/button'
 
@@ -21,17 +22,19 @@ type Props = {
 export const Header = ({ isAuth, logout, profile }: Props) => {
   return (
     <header className={s.header}>
-      <Link to={'/'}>
-        <Logo />
-      </Link>
+      <Container className={s.headerConatiner}>
+        <Link to={'/'}>
+          <Logo />
+        </Link>
 
-      {isAuth ? (
-        <HeaderDropDown logout={logout} profileData={profile} />
-      ) : (
-        <Button as={Link} to={'signIn'} variant={'secondary'}>
-          Sign In
-        </Button>
-      )}
+        {isAuth ? (
+          <HeaderDropDown logout={logout} profileData={profile} />
+        ) : (
+          <Button as={Link} to={'signIn'} variant={'secondary'}>
+            Sign In
+          </Button>
+        )}
+      </Container>
     </header>
   )
 }
