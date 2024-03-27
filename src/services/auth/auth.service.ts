@@ -1,4 +1,4 @@
-import { User } from '.'
+import { LoginArgs, User } from '.'
 import { baseApi } from '..'
 
 export const authService = baseApi.injectEndpoints({
@@ -9,7 +9,15 @@ export const authService = baseApi.injectEndpoints({
         url: `/v1/auth/me`,
       }),
     }),
+    signIn: builder.mutation<void, LoginArgs>({
+      invalidatesTags: ['Me'],
+      query: args => ({
+        body: args,
+        method: 'POST',
+        url: '/v1/auth/login',
+      }),
+    }),
   }),
 })
 
-export const { useGetMeQuery } = authService
+export const { useGetMeQuery, useSignInMutation } = authService
