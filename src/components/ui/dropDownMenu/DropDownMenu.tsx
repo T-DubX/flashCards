@@ -20,7 +20,9 @@ export const DropDownMenu = (props: Props) => {
       <DropdownMenu.Portal>
         <DropdownMenu.Content align={align} className={s.content} sideOffset={10}>
           {children}
-          <DropdownMenu.Arrow className={s.arrow} end={align} height={8} width={16} />
+          <DropdownMenu.Arrow asChild className={s.arrow} end={align} height={8} width={16}>
+            <div></div>
+          </DropdownMenu.Arrow>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
