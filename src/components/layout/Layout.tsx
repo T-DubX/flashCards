@@ -19,7 +19,7 @@ export const Layout = () => {
     <div className={s.layout}>
       <Header isAuth={isAuth} logout={() => {}} profile={profile} />
       <main className={s.main}>
-        <Container>
+        <Container className={s.container}>
           {isLoading ? <Spinner className={s.spinner} /> : <Outlet context={{ isAuth }} />}
         </Container>
       </main>
