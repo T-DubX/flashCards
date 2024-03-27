@@ -10,7 +10,6 @@ export const SignUpPage = () => {
   const handleSubmit = async (data: FormType) => {
     const { email, name, password } = data
 
-    console.log(data)
     try {
       await signUp({ email, name, password }).unwrap()
       navigate('/')
