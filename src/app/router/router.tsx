@@ -8,6 +8,7 @@ import {
 
 import { useAppOutletContext } from '@/common/hooks/useOutletContext'
 import { Layout } from '@/components/layout'
+import { ErrorPage } from '@/pages/ErrorPage'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -36,6 +37,7 @@ export const router = createBrowserRouter([
       },
     ],
     element: <Layout />,
+    errorElement: <ErrorPage />,
     path: '/',
   },
 ])
