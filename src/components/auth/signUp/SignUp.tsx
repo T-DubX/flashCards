@@ -8,15 +8,16 @@ import s from '@/components/auth/signUp/signUp.module.scss'
 import { Button, Card, FormInput, Typography } from '.'
 
 type Props = {
-  onSubmit: (data: Omit<FormType, 'passwordConfirmation'>) => void
+  onSubmit: (data: FormType) => void
 }
 
-type FormType = z.infer<typeof schema>
+export type FormType = z.infer<typeof schema>
 
 const schema = z
   .object({
     confirmPassword: z.string(),
     email: z.string().email(),
+    name: z.string().min(3).max(30),
     password: z.string().min(6).max(30),
   })
   .refine(date => date.password === date.confirmPassword, {
@@ -33,6 +34,7 @@ export const SignUp = (props: Props) => {
     defaultValues: {
       confirmPassword: '',
       email: '',
+      name: '',
       password: '',
     },
     resolver: zodResolver(schema),
@@ -46,6 +48,12 @@ export const SignUp = (props: Props) => {
         </Typography>
         <form onSubmit={handleSubmit(props.onSubmit)}>
           <div className={s.wrapperInputs}>
+            <FormInput
+              control={control}
+              errorMessage={errors.email?.message}
+              label={'Name'}
+              name={'name'}
+            />
             <FormInput
               control={control}
               errorMessage={errors.email?.message}

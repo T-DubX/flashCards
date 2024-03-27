@@ -13,3 +13,12 @@ export type LoginArgs = {
   password: string
   rememberMe: boolean
 }
+
+export type SignUpArgs = {
+  email: string
+  html?: string
+  name: string
+  password: string
+  sendConfirmationEmail?: false
+  subject?: string
+}
