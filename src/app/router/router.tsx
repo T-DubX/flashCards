@@ -9,10 +9,11 @@ import {
 import { useAppOutletContext } from '@/common/hooks/useOutletContext'
 import { Layout } from '@/components/layout'
 import { ErrorPage } from '@/pages/ErrorPage'
+import { SignInPage } from '@/pages/signInPage'
 
 const publicRoutes: RouteObject[] = [
   {
-    element: <div>login</div>,
+    element: <SignInPage />,
     path: '/login',
   },
 ]
