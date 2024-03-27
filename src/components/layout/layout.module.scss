@@ -1,15 +1,22 @@
 .main {
+  position: relative;
   width: 100%;
-  height: 100%;
-  padding-top: 36px;
+  padding: 32px 0;
   background-color: var(--color-dark-900);
 }
 
 .layout {
   height: 100vh;
+
+  // padding - height header
+  padding-top: 60px;
 }
 
 .spinner {
   align-self: center;
   margin: 0 auto;
+}
+
+.container {
+  justify-content: center;
 }

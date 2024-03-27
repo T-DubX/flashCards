@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -13,7 +14,7 @@ const loginSchema = z.object({
   rememberMe: z.boolean().default(false),
 })
 
-type FormValues = z.infer<typeof loginSchema>
+export type FormValues = z.infer<typeof loginSchema>
 
 export type SignInProps = {
   onSubmit: (data: FormValues) => void
@@ -70,7 +71,7 @@ export const SignIn = ({ onSubmit }: SignInProps) => {
             <Typography className={s.title} variant={'body2'}>
               Don&apos;t have an account?
             </Typography>
-            <Button className={s.signUpLink} variant={'link'}>
+            <Button as={Link} className={s.signUpLink} to={'/signUp'} variant={'link'}>
               Sign Up
             </Button>
           </div>
