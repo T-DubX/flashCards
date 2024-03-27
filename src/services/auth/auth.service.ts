@@ -1,4 +1,4 @@
-import { LoginArgs, User } from '.'
+import { LoginArgs, SignUpArgs, User } from '.'
 import { baseApi } from '..'
 
 export const authService = baseApi.injectEndpoints({
@@ -15,6 +15,14 @@ export const authService = baseApi.injectEndpoints({
         body: args,
         method: 'POST',
         url: '/v1/auth/login',
+      }),
+    }),
+    signUp: builder.mutation<User, SignUpArgs>({
+      invalidatesTags: ['Me'],
+      query: args => ({
+        body: args,
+        method: 'POST',
+        url: '/v1/auth/sign-up',
       }),
     }),
   }),
