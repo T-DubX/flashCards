@@ -30,7 +30,7 @@ export const Header = ({ isAuth, logout, profile }: Props) => {
         {isAuth ? (
           <HeaderDropDown logout={logout} profileData={profile} />
         ) : (
-          <Button as={Link} to={'signIn'} variant={'secondary'}>
+          <Button as={Link} to={'login'} variant={'secondary'}>
             Sign In
           </Button>
         )}
