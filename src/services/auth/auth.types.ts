@@ -16,9 +16,9 @@ export type LoginArgs = {
 
 export type SignUpArgs = {
   email: string
-  html: string
+  html?: string
   name: string
   password: string
-  sendConfirmationEmail: false
-  subject: string
+  sendConfirmationEmail?: false
+  subject?: string
 }
