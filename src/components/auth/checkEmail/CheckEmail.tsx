@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import s from './checkEmail.module.scss'
 
 import { Button, Card, Email, Typography } from '.'
@@ -19,7 +21,7 @@ export const CheckEmail = ({ email }: Props) => {
         <Typography className={s.description} variant={'body2'}>
           We’ve sent an Email with instructions {email}
         </Typography>
-        <Button as={'a'} fullWidth variant={'primary'}>
+        <Button as={Link} fullWidth to={'/login'} variant={'primary'}>
           Back to Sign In
         </Button>
       </div>
