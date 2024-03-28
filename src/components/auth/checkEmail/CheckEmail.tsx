@@ -2,7 +2,11 @@ import s from './checkEmail.module.scss'
 
 import { Button, Card, Email, Typography } from '.'
 
-export const CheckEmail = () => {
+type Props = {
+  email: string
+}
+
+export const CheckEmail = ({ email }: Props) => {
   return (
     <Card className={s.card}>
       <div className={s.content}>
@@ -13,7 +17,7 @@ export const CheckEmail = () => {
           <Email />
         </div>
         <Typography className={s.description} variant={'body2'}>
-          We’ve sent an Email with instructions to example@mail.com
+          We’ve sent an Email with instructions {email}
         </Typography>
         <Button as={'a'} fullWidth variant={'primary'}>
           Back to Sign In
