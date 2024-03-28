@@ -59,7 +59,7 @@ export const SignIn = ({ onSubmit }: SignInProps) => {
 
           <FormCheckbox control={control} label={'Remember me'} name={'rememberMe'} />
           <div className={s.wrapperForgotPass}>
-            <Typography as={'a'} variant={'body2'}>
+            <Typography as={Link} to={'/forgotPassword'} variant={'body2'}>
               Forgot Password?
             </Typography>
           </div>

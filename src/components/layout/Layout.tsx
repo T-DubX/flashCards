@@ -17,7 +17,7 @@ export const Layout = () => {
 
   return (
     <div className={s.layout}>
-      <Header isAuth={isAuth} logout={() => {}} profile={profile} />
+      <Header isAuth={isAuth} profile={profile} />
       <main className={s.main}>
         <Container className={s.container}>
           {isLoading ? (
