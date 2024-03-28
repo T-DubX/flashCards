@@ -1,8 +1,16 @@
-import { LoginArgs, SignUpArgs, User } from '.'
+import { ForgotPasswordArgs, LoginArgs, SignUpArgs, User } from '.'
 import { baseApi } from '..'
 
 export const authService = baseApi.injectEndpoints({
   endpoints: builder => ({
+    forgotPassword: builder.mutation<void, ForgotPasswordArgs>({
+      invalidatesTags: ['Me'],
+      query: args => ({
+        body: args,
+        method: 'POST',
+        url: '/v1/auth/recover-password',
+      }),
+    }),
     getMe: builder.query<User | undefined, void>({
       providesTags: ['Me'],
       query: () => ({
@@ -35,5 +43,10 @@ export const authService = baseApi.injectEndpoints({
   }),
 })
 
-export const { useGetMeQuery, useLogoutMutation, useSignInMutation, useSignUpMutation } =
-  authService
+export const {
+  useForgotPasswordMutation,
+  useGetMeQuery,
+  useLogoutMutation,
+  useSignInMutation,
+  useSignUpMutation,
+} = authService

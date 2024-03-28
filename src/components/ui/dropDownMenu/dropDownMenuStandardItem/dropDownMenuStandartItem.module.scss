@@ -7,20 +7,19 @@
 
   padding: 12px 15px;
 
-  //&:first-child {
-  //  padding-top: 0;
-  //}
-  //
-  //&:last-child {
-  //  padding-bottom: 0;
-  //}
-
-  .value {
-  }
-
   svg {
     width: 16px;
     height: 16px;
+  }
+
+  &:hover {
+    color: var(--color-accent-500);
+
+    svg {
+      path {
+        fill: var(--color-accent-500);
+      }
+    }
   }
 
   p {

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import { Person } from '@/assets/icon/Person'
 import { ProfileData } from '@/components/layout/header'
 import { Avatar } from '@/components/ui/avatar'
@@ -39,7 +41,9 @@ export const HeaderDropDown = ({ profileData }: Props) => {
           </div>
         </DropDownMenuItem>
         <Separator />
-        <DropDownMenuStandardItem icon={<Person />} value={'My Profile'} />
+        <Link className={s.profileLink} to={'/profile'}>
+          <DropDownMenuStandardItem icon={<Person />} value={'My Profile'} />
+        </Link>
         <Separator />
         <DropDownMenuStandardItem
           icon={<LogOutIcon />}

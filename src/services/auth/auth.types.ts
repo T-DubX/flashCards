@@ -22,3 +22,5 @@ export type SignUpArgs = {
   sendConfirmationEmail?: false
   subject?: string
 }
+
+export type ForgotPasswordArgs = Pick<SignUpArgs, 'email' | 'html' | 'subject'>

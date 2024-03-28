@@ -9,6 +9,8 @@ import {
 import { useAppOutletContext } from '@/common/hooks/useOutletContext'
 import { Layout } from '@/components/layout'
 import { ErrorPage } from '@/pages/ErrorPage'
+import { CheckEmailPage } from '@/pages/checkEmailPage'
+import { ForgotPasswordPage } from '@/pages/forgotPasswordPage'
 import { SignInPage } from '@/pages/signInPage'
 import { SignUpPage } from '@/pages/signUpPage'
 
@@ -20,6 +22,14 @@ const publicRoutes: RouteObject[] = [
   {
     element: <SignUpPage />,
     path: '/signUp',
+  },
+  {
+    element: <ForgotPasswordPage />,
+    path: '/forgotPassword',
+  },
+  {
+    element: <CheckEmailPage />,
+    path: '/checkEmail',
   },
 ]
 
