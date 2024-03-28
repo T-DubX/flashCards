@@ -6,10 +6,11 @@ import { useForgotPasswordMutation } from '@/services/auth'
 export const ForgotPasswordPage = () => {
   const [forgotPass] = useForgotPasswordMutation()
   const navigate = useNavigate()
-  const handleSubmit = (value: { email: string }) => {
+  const handleSubmit = async (value: { email: string }) => {
     try {
-      forgotPass(value).unwrap()
-      navigate('/checkEmail', { state: value.email })
+      await forgotPass(value).unwrap()
+
+      navigate('/checkEmail', { state: { email: value.email } })
     } catch (error) {
       console.log(error)
     }
