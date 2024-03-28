@@ -9,15 +9,17 @@ import {
   Typography,
 } from '@/components/ui/dropDownMenu'
 import { DropDownMenu } from '@/components/ui/dropDownMenu/DropDownMenu'
+import { useLogoutMutation } from '@/services/auth'
 
 import s from './headerDropDown.module.scss'
 
 type Props = {
-  logout: () => void
   profileData: ProfileData
 }
 
-export const HeaderDropDown = ({ logout, profileData }: Props) => {
+export const HeaderDropDown = ({ profileData }: Props) => {
+  const [logout] = useLogoutMutation()
+
   const trigger = <Avatar className={s.avatar} src={profileData.avatar} />
 
   return (
@@ -39,7 +41,11 @@ export const HeaderDropDown = ({ logout, profileData }: Props) => {
         <Separator />
         <DropDownMenuStandardItem icon={<Person />} value={'My Profile'} />
         <Separator />
-        <DropDownMenuStandardItem icon={<LogOutIcon />} onClick={logout} value={'Sing Out'} />
+        <DropDownMenuStandardItem
+          icon={<LogOutIcon />}
+          onClick={() => logout()}
+          value={'Sing Out'}
+        />
       </DropDownMenu>
     </div>
   )

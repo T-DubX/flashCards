@@ -15,11 +15,10 @@ export type ProfileData = {
 
 type Props = {
   isAuth: boolean
-  logout: () => void
   profile: ProfileData
 }
 
-export const Header = ({ isAuth, logout, profile }: Props) => {
+export const Header = ({ isAuth, profile }: Props) => {
   return (
     <header className={s.header}>
       <Container className={s.headerConatiner}>
@@ -28,7 +27,7 @@ export const Header = ({ isAuth, logout, profile }: Props) => {
         </Link>
 
         {isAuth ? (
-          <HeaderDropDown logout={logout} profileData={profile} />
+          <HeaderDropDown profileData={profile} />
         ) : (
           <Button as={Link} to={'login'} variant={'secondary'}>
             Sign In
