@@ -46,7 +46,7 @@ export const ForgotPassword = (props: Props) => {
           <Typography variant={'body2'}>
             Enter your email address and we will send you further instructions
           </Typography>
-          <Button as={Link} className={s.sendBtn} to={'/checkEmail'} variant={'link'}>
+          <Button as={Link} className={s.sendBtn} to={'/checkEmail'} variant={'primary'}>
             Send Instructions
           </Button>
         </form>
