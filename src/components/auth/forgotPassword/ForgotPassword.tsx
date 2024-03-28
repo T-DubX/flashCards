@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -45,7 +46,7 @@ export const ForgotPassword = (props: Props) => {
           <Typography variant={'body2'}>
             Enter your email address and we will send you further instructions
           </Typography>
-          <Button className={s.sendBtn} value={'primary'}>
+          <Button as={Link} className={s.sendBtn} to={'/checkEmail'} variant={'link'}>
             Send Instructions
           </Button>
         </form>
@@ -53,7 +54,7 @@ export const ForgotPassword = (props: Props) => {
           <Typography className={s.title} variant={'body2'}>
             Did you remember your password?
           </Typography>
-          <Button as={'a'} className={s.link} variant={'link'}>
+          <Button as={Link} className={s.link} to={'/login'} variant={'link'}>
             Try logging in
           </Button>
         </div>
