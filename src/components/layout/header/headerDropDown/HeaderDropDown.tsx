@@ -41,7 +41,7 @@ export const HeaderDropDown = ({ profileData }: Props) => {
           </div>
         </DropDownMenuItem>
         <Separator />
-        <Link to={'/profile'}>
+        <Link className={s.profileLink} to={'/profile'}>
           <DropDownMenuStandardItem icon={<Person />} value={'My Profile'} />
         </Link>
         <Separator />
