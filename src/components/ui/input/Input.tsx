@@ -16,7 +16,7 @@ export type InputProps = {
 } & ComponentPropsWithoutRef<'input'>
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ errorMessage, label, onValueChange, type = 'text', value, ...rest }, ref) => {
+  ({ className, errorMessage, label, onValueChange, type = 'text', value, ...rest }, ref) => {
     const [showPassword, setShowPassword] = useState(false)
     const [currentType, setCurrentType] = useState(type)
 
@@ -41,10 +41,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       setShowPassword(prev => !prev)
     }
 
-    const classNames = clsx(s.input, errorMessage && s.error)
+    const classNames = clsx(s.input, errorMessage && s.error, className)
 
     return (
-      <div className={s.wrapper}>
+      <div className={clsx(s.wrapper, className)}>
         {label && (
           <Typography
             as={'label'}
