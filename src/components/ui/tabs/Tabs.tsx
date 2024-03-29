@@ -6,6 +6,7 @@ import { TabsRadix, Typography } from '.'
 
 type Tab = {
   disabled: boolean
+  title: string
   value: string
 }
 
@@ -27,16 +28,14 @@ export const Tabs = (props: Props) => {
       <TabsRadix.Root className={s.tabsRoot} {...rest}>
         <TabsRadix.List className={s.tabsList}>
           {tabs.map(tab => (
-            <>
-              <TabsRadix.Trigger
-                className={s.tabsTrigger}
-                disabled={tab.disabled}
-                key={tab.value}
-                value={tab.value}
-              >
-                {tab.value}
-              </TabsRadix.Trigger>
-            </>
+            <TabsRadix.Trigger
+              className={s.tabsTrigger}
+              disabled={tab.disabled}
+              key={tab.value}
+              value={tab.value}
+            >
+              {tab.title}
+            </TabsRadix.Trigger>
           ))}
         </TabsRadix.List>
       </TabsRadix.Root>
