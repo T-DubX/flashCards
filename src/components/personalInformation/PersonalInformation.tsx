@@ -9,7 +9,7 @@ import { AvatarUploader } from './avatarUploader/AvatarUploader'
 import { ProfileInfo } from './profileInfo/ProfileInfo'
 import { FormValues, ProfileInfoEditing } from './profileInfoEditing/ProfileInfoEditing'
 
-type ProfileData = {
+export type ProfileData = {
   avatar?: string
   email?: string
   name: string

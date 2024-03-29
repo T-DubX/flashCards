@@ -1,3 +1,5 @@
+import { FormValues } from '@/components/personalInformation/profileInfoEditing/ProfileInfoEditing'
+
 import { ForgotPasswordArgs, LoginArgs, SignUpArgs, User } from '.'
 import { baseApi } from '..'
 
@@ -40,6 +42,14 @@ export const authService = baseApi.injectEndpoints({
         url: '/v1/auth/sign-up',
       }),
     }),
+    updateDataProfile: builder.mutation<User, FormValues>({
+      invalidatesTags: ['Me'],
+      query: args => ({
+        body: args,
+        method: 'PATCH',
+        url: '/v1/auth/me',
+      }),
+    }),
   }),
 })
 
@@ -49,4 +59,5 @@ export const {
   useLogoutMutation,
   useSignInMutation,
   useSignUpMutation,
+  useUpdateDataProfileMutation,
 } = authService

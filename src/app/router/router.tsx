@@ -11,6 +11,7 @@ import { Layout } from '@/components/layout'
 import { ErrorPage } from '@/pages/ErrorPage'
 import { CheckEmailPage } from '@/pages/checkEmailPage'
 import { ForgotPasswordPage } from '@/pages/forgotPasswordPage'
+import { ProfileInformationPage } from '@/pages/profileInformationPage'
 import { SignInPage } from '@/pages/signInPage'
 import { SignUpPage } from '@/pages/signUpPage'
 
@@ -37,6 +38,10 @@ const privateRoutes: RouteObject[] = [
   {
     element: <div>Decks page</div>,
     path: '/',
+  },
+  {
+    element: <ProfileInformationPage />,
+    path: '/profile',
   },
 ]
 
