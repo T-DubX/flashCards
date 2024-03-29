@@ -1,3 +1,5 @@
+import { ProfileData } from '@/components/personalInformation'
+
 export type User = {
   avatar: null | string
   created: string

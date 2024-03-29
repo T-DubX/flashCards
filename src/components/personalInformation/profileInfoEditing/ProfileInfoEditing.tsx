@@ -18,7 +18,7 @@ type Props = {
 export type FormValues = z.infer<typeof schema>
 
 const schema = z.object({
-  nickname: z.string().min(3).trim(),
+  name: z.string().min(3).trim(),
 })
 
 export const ProfileInfoEditing = ({
@@ -33,7 +33,7 @@ export const ProfileInfoEditing = ({
     handleSubmit,
   } = useForm<FormValues>({
     defaultValues: {
-      nickname: initialValue,
+      name: initialValue,
     },
     resolver: zodResolver(schema),
   })
@@ -47,9 +47,9 @@ export const ProfileInfoEditing = ({
     <form className={clsx(s.form, className)} onSubmit={handleSubmit(handleOnSubmit)}>
       <FormInput
         control={control}
-        errorMessage={errors.nickname?.message}
+        errorMessage={errors.name?.message}
         label={'Nickmame'}
-        name={'nickname'}
+        name={'name'}
       />
       <Button fullWidth type={'submit'} variant={'primary'}>
         Save Changes
