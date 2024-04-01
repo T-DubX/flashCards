@@ -10,6 +10,7 @@ import { useAppOutletContext } from '@/common/hooks/useOutletContext'
 import { Layout } from '@/components/layout'
 import { ErrorPage } from '@/pages/ErrorPage'
 import { CheckEmailPage } from '@/pages/checkEmailPage'
+import { Decks } from '@/pages/decks'
 import { ForgotPasswordPage } from '@/pages/forgotPasswordPage'
 import { ProfileInformationPage } from '@/pages/profileInformationPage'
 import { SignInPage } from '@/pages/signInPage'
@@ -36,7 +37,7 @@ const publicRoutes: RouteObject[] = [
 
 const privateRoutes: RouteObject[] = [
   {
-    element: <div>Decks page</div>,
+    element: <Decks />,
     path: '/',
   },
   {
