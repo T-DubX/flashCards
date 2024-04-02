@@ -20,7 +20,12 @@ export const ProfileInformationPage = () => {
       <Button as={Link} className={s.linkBack} to={'/'} variant={'link'}>
         <ArrowBack /> <Typography as={'span'}>Back to main</Typography>
       </Button>
-      <PersonalInformation data={personData} logout={logout} updateNickname={updateData} />
+      <PersonalInformation
+        className={s.personDataBlock}
+        data={personData}
+        logout={logout}
+        updateNickname={updateData}
+      />
     </div>
   )
 }
