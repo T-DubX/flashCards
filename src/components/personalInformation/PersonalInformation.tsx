@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
+import clsx from 'clsx'
 
 import s from './personalInformation.module.scss'
 
@@ -16,19 +17,25 @@ export type ProfileData = {
 }
 
 export type PersonalInformationProps = {
+  className?: string
   data?: ProfileData
   logout: () => void
   updateNickname: (data: FormValues) => void
 }
 
-export const PersonalInformation = ({ data, logout, updateNickname }: PersonalInformationProps) => {
+export const PersonalInformation = ({
+  className,
+  data,
+  logout,
+  updateNickname,
+}: PersonalInformationProps) => {
   const [edit, setEdit] = useState(false)
 
   const activateEditMode = () => setEdit(true)
   const deactivateEditMode = () => setEdit(false)
 
   return (
-    <Card className={s.card}>
+    <Card className={clsx(s.card, className)}>
       <Typography className={s.cardTitle} variant={'h1'}>
         Personal Information
       </Typography>
