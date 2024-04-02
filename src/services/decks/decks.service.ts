@@ -1,9 +1,16 @@
 import { getValuable } from '@/common/utils/get-valuable'
 import { baseApi } from '@/services'
-import { DecksResponse, GetDecksArgs } from '@/services/decks/decks.types'
+import { CreateDeckArgs, DecksResponse, GetDecksArgs } from '@/services/decks/decks.types'
 
 const decksService = baseApi.injectEndpoints({
   endpoints: builder => ({
+    createNewDeck: builder.mutation<DecksResponse, CreateDeckArgs>({
+      query: args => ({
+        body: args,
+        method: 'POST',
+        url: `v1/decks`,
+      }),
+    }),
     getDecks: builder.query<DecksResponse, GetDecksArgs>({
       providesTags: ['Decks'],
       query: args => ({
@@ -14,4 +21,4 @@ const decksService = baseApi.injectEndpoints({
   }),
 })
 
-export const { useGetDecksQuery } = decksService
+export const { useCreateNewDeckMutation, useGetDecksQuery } = decksService
