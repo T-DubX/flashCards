@@ -78,15 +78,19 @@ export const DecksTable = ({
             </Table.Cell>
             <Table.Cell col={'1'}>
               <div className={s.wrapperIcons}>
-                <Button variant={'icon'}>
+                <Button title={'Learn'} variant={'icon'}>
                   <PlayCircle />
                 </Button>
                 {deck.author.id === currentUserId && (
                   <>
-                    <Button onClick={() => onEditClick(deck.id)} variant={'icon'}>
+                    <Button onClick={() => onEditClick(deck.id)} title={'Edit'} variant={'icon'}>
                       <EditTwoOutline />
                     </Button>
-                    <Button onClick={() => onDeleteClick(deck.id)} variant={'icon'}>
+                    <Button
+                      onClick={() => onDeleteClick(deck.id)}
+                      title={'Delete'}
+                      variant={'icon'}
+                    >
                       <Trash />
                     </Button>
                   </>
