@@ -4,6 +4,7 @@ import { Button, FormInput } from '@/components/auth/forgotPassword'
 import { FormCheckbox } from '@/components/auth/signIn'
 import { Modal } from '@/components/ui/modal'
 import { useCreateNewDeckMutation } from '@/services/decks'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import s from './createNewDecksModal.module.scss'
@@ -26,6 +27,7 @@ export const CreateNewDeckModal = ({ onOpenChange, open }: Props) => {
       isPrivate: true,
       name: '',
     },
+    resolver: zodResolver(schema),
   })
 
   const [createNewDeck] = useCreateNewDeckMutation()
