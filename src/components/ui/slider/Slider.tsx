@@ -5,14 +5,14 @@ import s from './slider.module.scss'
 import { Typography } from '.'
 
 export type Props = {
-  max: number
-  min: number
+  max?: number | undefined
+  min?: number | undefined
   onValueChange: (value: number[]) => void
   value: number[]
 }
 
 export const Slider = (props: Props) => {
-  const { max, min, onValueChange, value } = props
+  const { max = 10, min, onValueChange, value } = props
 
   return (
     <div className={s.wrapperSlider}>

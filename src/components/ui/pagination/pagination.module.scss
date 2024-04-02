@@ -5,6 +5,11 @@
   margin: 5px;
 }
 
+.wrapperButtons {
+  display: flex;
+  gap: 12px;
+}
+
 .item {
   cursor: pointer;
   user-select: none;
