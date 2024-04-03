@@ -4,6 +4,7 @@ import { CreateDeckArgs, DecksResponse, GetDecksArgs } from '@/services/decks/de
 const decksService = baseApi.injectEndpoints({
   endpoints: builder => ({
     createNewDeck: builder.mutation<DecksResponse, CreateDeckArgs>({
+      invalidatesTags: ['Decks'],
       query: args => ({
         body: args,
         method: 'POST',
