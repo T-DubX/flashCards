@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
 import { Trash } from '@/assets/icon/Trash'
+import { SELECT_OPTIONS_PAGINATION } from '@/common/const'
 import { Button } from '@/components/auth/forgotPassword'
 import { Container } from '@/components/container'
 import { DecksTable } from '@/components/decks/decksTable'
@@ -60,12 +61,6 @@ export const Decks = () => {
     name: value,
     orderBy: 'updated-desc',
   })
-
-  const paginationOptions = [
-    { disabled: false, label: '5', value: '5' },
-    { disabled: false, label: '10', value: '10' },
-    { disabled: false, label: '15', value: '15' },
-  ]
 
   const hendleCurrentTab = (value: string) => {
     dispatch(setCurrentTab({ authorId: me?.id ?? undefined, tab: value }))
@@ -187,7 +182,7 @@ export const Decks = () => {
         defaultValue={pageSize.toString()}
         onChangePage={handleChangePage}
         onValueChange={handleItemsPrePage}
-        options={paginationOptions}
+        options={SELECT_OPTIONS_PAGINATION}
         pageSize={pageSize}
         totalCount={data?.pagination.totalPages ?? 0}
       />
