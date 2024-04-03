@@ -26,6 +26,7 @@ import {
   setCurrentTab,
   setMaxCards,
   setMinCards,
+  setOrderBy,
   setPageSize,
   useGetDecksQuery,
 } from '@/services/decks'
@@ -41,7 +42,7 @@ export const Decks = () => {
   const minCardsCount = useSelector(selectDecksMinCards)
   const maxCardsCount = useSelector(selectDecksMaxCards)
   const pageSize = useSelector(selectDecksPageSize)
-  const orderBy = useSelector(selectDecksOrderBy)
+  const sort = useSelector(selectDecksOrderBy)
 
   const [createDeckModalOpen, setCreateDeckModalOpen] = useState(false)
   const [deleteDeckId, setDeleteDeckId] = useState<null | string>(null)
@@ -61,7 +62,7 @@ export const Decks = () => {
     maxCardsCount,
     minCardsCount,
     name,
-    orderBy,
+    orderBy: sort ? `${sort.key}-${sort.direction}` : undefined,
   })
 
   const hendleCurrentTab = (value: string) => {
@@ -99,14 +100,7 @@ export const Decks = () => {
   }
 
   const handleSort = (sort: Sort) => {
-    if (sort) {
-      const sortKey = sort.key
-      const sortDirection = sort.direction
-
-      console.log(sortDirection, sortKey)
-    }
-
-    console.log(sort)
+    dispatch(setOrderBy(sort))
   }
 
   const handleChangeSearch = (value: string) => {
@@ -175,7 +169,7 @@ export const Decks = () => {
             onDeleteClick={setDeleteDeckId}
             onEditClick={() => {}}
             onSort={handleSort}
-            sort={{ direction: 'desc', key: 'updated' }}
+            sort={sort}
           />
         )}
       </div>
