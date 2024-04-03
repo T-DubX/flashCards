@@ -1,0 +1,65 @@
+.wrapper {
+  flex-direction: column;
+
+  p {
+    margin: 0;
+  }
+
+  .pageHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 7px;
+  }
+
+  .controlBlock {
+    display: flex;
+    align-items: center;
+
+    // justify-content: space-between;
+
+    .titleControlBlockItem {
+      margin-bottom: 5px;
+    }
+
+    .search {
+      align-self: flex-end;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .tabsWrapper {
+      display: flex;
+      flex-direction: column;
+      margin-right: 24px;
+      margin-left: 24px;
+    }
+
+    .sliderWrapper {
+      max-width: 251px;
+      margin-right: 36px;
+    }
+
+    .clearBtn {
+      align-self: flex-end;
+    }
+  }
+
+  .decksList {
+    margin-top: 36px;
+    margin-bottom: 24px;
+
+    .emptyMyDecks {
+      margin-top: 50px;
+      color: var(--color-dark-100);
+      text-align: center;
+    }
+  }
+
+  .titleDecksNotFound {
+    margin-bottom: 50px;
+    color: var(--color-dark-100);
+    text-align: center;
+  }
+}
+

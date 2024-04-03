@@ -37,7 +37,7 @@ const columns: Column[] = [
   },
   {
     cols: '3',
-    key: 'author',
+    key: 'created',
     title: 'Created By',
   },
   {
