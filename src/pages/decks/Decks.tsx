@@ -20,6 +20,7 @@ import {
   selectDecksCurrentTab,
   selectDecksMaxCards,
   selectDecksMinCards,
+  selectDecksOrderBy,
   selectDecksPageSize,
   setCurrentPage,
   setCurrentTab,
@@ -37,13 +38,14 @@ import { CreateNewDeckModal } from '../../components/decks/createNewDeckModal'
 export const Decks = () => {
   const currentTab = useSelector(selectDecksCurrentTab)
   const currentPage = useSelector(selectDecksCurrentPage)
-  const minCards = useSelector(selectDecksMinCards)
-  const maxCards = useSelector(selectDecksMaxCards)
+  const minCardsCount = useSelector(selectDecksMinCards)
+  const maxCardsCount = useSelector(selectDecksMaxCards)
   const pageSize = useSelector(selectDecksPageSize)
+  const orderBy = useSelector(selectDecksOrderBy)
 
   const [createDeckModalOpen, setCreateDeckModalOpen] = useState(false)
   const [deleteDeckId, setDeleteDeckId] = useState<null | string>(null)
-  const [value, setValue] = useState('')
+  const [name, setName] = useState('')
   // const [searchParams, setSearchParams] = useSearchParams()
 
   const dispatch = useDispatch<AppDispatch>()
@@ -56,10 +58,10 @@ export const Decks = () => {
     authorId,
     currentPage,
     // itemsPrePage: pageSize,
-    maxCardsCount: maxCards,
-    minCardsCount: minCards,
-    name: value,
-    orderBy: 'updated-desc',
+    maxCardsCount,
+    minCardsCount,
+    name,
+    orderBy,
   })
 
   const hendleCurrentTab = (value: string) => {
@@ -89,7 +91,7 @@ export const Decks = () => {
   }
 
   const handleClearFilter = () => {
-    setValue('')
+    setName('')
     dispatch(setCurrentPage(1))
     dispatch(setMinCards(0))
     dispatch(setMaxCards(10))
@@ -97,11 +99,18 @@ export const Decks = () => {
   }
 
   const handleSort = (sort: Sort) => {
+    if (sort) {
+      const sortKey = sort.key
+      const sortDirection = sort.direction
+
+      console.log(sortDirection, sortKey)
+    }
+
     console.log(sort)
   }
 
   const handleChangeSearch = (value: string) => {
-    setValue(value)
+    setName(value)
     dispatch(setCurrentPage(1))
   }
 
@@ -126,7 +135,7 @@ export const Decks = () => {
             onValueChange={handleChangeSearch}
             placeholder={'Input search'}
             type={'search'}
-            value={value}
+            value={name}
           />
         </div>
         <div className={s.tabsWrapper}>
@@ -146,7 +155,7 @@ export const Decks = () => {
             // max={maxCards}
             // min={minCards}
             onValueChange={handleMinMaxChangeValue}
-            value={[minCards, maxCards ?? 10]}
+            value={[minCardsCount, maxCardsCount ?? 10]}
           />
         </div>
         <Button className={s.clearBtn} onClick={handleClearFilter} variant={'secondary'}>
