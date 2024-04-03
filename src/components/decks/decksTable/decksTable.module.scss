@@ -14,8 +14,14 @@
 
   overflow: hidden;
 
+  color: var(--color-light-100);
+  text-decoration: none;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .wrapperIcons {
