@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Typography } from '@/components/ui/typography'
 import { useGetMeQuery } from '@/services/auth'
-import { useGetDeckQuery } from '@/services/deck/deck.service'
+import { useGetCardsQuery, useGetDeckQuery } from '@/services/deck/deck.service'
 
 import s from './deck.module.scss'
 
@@ -17,11 +17,14 @@ export const Deck = () => {
 
   const { data: deckData } = useGetDeckQuery({ id: deckId })
   const { data: me } = useGetMeQuery()
+  const { data: cardsData } = useGetCardsQuery({
+    id: deckId,
+  })
 
   const isOwner = deckData?.userId === me?.id
-  // const isDeckEmpty = deckData?.
+  const isDeckEmpty = deckData?.cardsCount === 0
 
-  console.log(deckData)
+  console.log(cardsData?.items)
 
   return (
     <Container className={s.wrapper}>
@@ -29,24 +32,32 @@ export const Deck = () => {
         <ArrowBack /> <Typography as={'span'}>Back to Decks List</Typography>
       </Button>
       <div className={s.headerDeck}>
-        <div className={s.deckNameWrapper}>
-          <Typography variant={'h1'}>{deckData?.name}</Typography>
-          {isOwner && <DeckDropDown deckId={deckId} />}
+        <div className={s.headerLeft}>
+          <div className={s.deckNameWrapper}>
+            <Typography className={s.title} variant={'h1'}>
+              {deckData?.name}
+            </Typography>
+            {isOwner && !isDeckEmpty && <DeckDropDown deckId={deckId} />}
+          </div>
+          {deckData?.cover && !isDeckEmpty && (
+            <div className={s.wrapperAvatarDeck}>
+              <img alt={'Avatar Deck'} src={deckData.cover} />
+            </div>
+          )}
         </div>
 
-        {isOwner && <Button>Add New Card</Button>}
+        {isOwner && !isDeckEmpty && <Button className={s.headerBtn}>Add New Card</Button>}
         {!isOwner && (
-          <Button as={Link} to={`decks/${params.deckId}/learn`}>
+          <Button as={Link} className={s.headerLink} to={`decks/${params.deckId}/learn`}>
             Learn to Pack
           </Button>
         )}
       </div>
-      {deckData?.cover && (
-        <div className={s.wrapperAvatarDeck}>
-          <img alt={'Avatar Deck'} src={deckData.cover} />
+      {!isDeckEmpty && (
+        <div>
+          <Input placeholder={'Input search'} type={'search'} />
         </div>
       )}
-      <Input placeholder={'Input search'} type={'search'} />
     </Container>
   )
 }
