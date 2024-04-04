@@ -1,2 +1,53 @@
 .wrapper {
+  flex-direction: column;
+
+  .linkBack {
+    all: unset;
+
+    cursor: pointer;
+
+    align-self: flex-start;
+
+    margin-bottom: 10px;
+
+    color: var(--color-light-100);
+    text-decoration: none;
+
+    svg {
+      position: relative;
+      top: -1px;
+    }
+
+    &:hover {
+      color: var(--color-accent-500);
+
+      svg {
+        path {
+          fill: var(--color-accent-500);
+        }
+      }
+    }
+  }
+
+  .headerDeck {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .deckNameWrapper {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .wrapperAvatarDeck {
+    width: 170px;
+    height: 107px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 }
