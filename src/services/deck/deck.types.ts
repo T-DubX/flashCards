@@ -11,11 +11,11 @@ export type GetCardsArgs = {
   question?: string
 }
 export type GetCardsResponse = {
-  items: GetCardsResponseItems[]
+  items: CardsItems[]
   pagination: Pagination
 }
 
-export type GetCardsResponseItems = {
+export type CardsItems = {
   answer: string
   answerImg: string
   answerVideo: string
