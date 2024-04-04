@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
 
 import { Trash } from '@/assets/icon/Trash'
 import { SELECT_OPTIONS_PAGINATION } from '@/common/const'
 import { Button } from '@/components/auth/forgotPassword'
 import { Container } from '@/components/container'
+import { CreateNewDeckModal } from '@/components/decks/createNewDeckModal'
 import { DecksTable } from '@/components/decks/decksTable'
 import { DeleteDeckModal } from '@/components/decks/deleteDeckModal'
 import { Sort } from '@/components/tableSortHeader'
@@ -34,8 +34,6 @@ import { AppDispatch } from '@/services/store'
 
 import s from './Decks.module.scss'
 
-import { CreateNewDeckModal } from '../../components/decks/createNewDeckModal'
-
 export const Decks = () => {
   const currentTab = useSelector(selectDecksCurrentTab)
   const currentPage = useSelector(selectDecksCurrentPage)
@@ -47,7 +45,6 @@ export const Decks = () => {
   const [createDeckModalOpen, setCreateDeckModalOpen] = useState(false)
   const [deleteDeckId, setDeleteDeckId] = useState<null | string>(null)
   const [name, setName] = useState('')
-  // const [searchParams, setSearchParams] = useSearchParams()
 
   const dispatch = useDispatch<AppDispatch>()
   const { data: me } = useGetMeQuery()
@@ -65,7 +62,7 @@ export const Decks = () => {
     orderBy: sort ? `${sort.key}-${sort.direction}` : undefined,
   })
 
-  const hendleCurrentTab = (value: string) => {
+  const handleCurrentTab = (value: string) => {
     dispatch(setCurrentTab({ authorId: me?.id ?? undefined, tab: value }))
     dispatch(setCurrentPage(1))
   }
@@ -135,7 +132,7 @@ export const Decks = () => {
         <div className={s.tabsWrapper}>
           <Typography className={s.titleControlBlockItem}>Show decks cards</Typography>
           <Tabs
-            onValueChange={hendleCurrentTab}
+            onValueChange={handleCurrentTab}
             tabs={[
               { disabled: false, title: 'My Decks', value: 'myDecks' },
               { disabled: false, title: 'All Decks', value: 'allDecks' },
