@@ -5,5 +5,5 @@ import { baseQueryWithReauth } from './base-query-with-reauth'
 export const baseApi = createApi({
   baseQuery: baseQueryWithReauth,
   endpoints: () => ({}),
-  tagTypes: ['Decks', 'Me'],
+  tagTypes: ['Decks', 'Me', 'Deck'],
 })
