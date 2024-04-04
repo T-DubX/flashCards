@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import { EditTwoOutline } from '@/assets/icon/EditTwoOutline'
 import { PlayCircle } from '@/assets/icon/PlayCircle'
 import { Trash } from '@/assets/icon/Trash'
@@ -63,7 +65,13 @@ export const DecksTable = ({
           <Table.Row key={deck.id}>
             <Table.Cell col={'3'}>
               {deck.cover && <img alt={''} className={s.img} src={deck.cover} />}
-              <Typography className={s.deckName} title={deck.name} variant={'body2'}>
+              <Typography
+                as={Link}
+                className={s.deckName}
+                title={deck.name}
+                to={`/decks/${deck.id}`}
+                variant={'body2'}
+              >
                 {deck.name}
               </Typography>
             </Table.Cell>
