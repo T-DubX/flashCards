@@ -68,9 +68,9 @@ export const Deck = () => {
         {!isOwner && isDeckEmpty && <Typography variant={'body1'}>This pack is empty.</Typography>}
       </div>
       {!isDeckEmpty && (
-        <div>
+        <div className={s.mainContent}>
           <Input placeholder={'Input search'} type={'search'} />
-          <CardsTable cards={cardsData?.items} isOwner={isOwner} />
+          <CardsTable cards={cardsData?.items} className={s.cardsTable} isOwner={isOwner} />
         </div>
       )}
     </Container>

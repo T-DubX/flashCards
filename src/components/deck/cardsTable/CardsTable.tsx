@@ -1,3 +1,5 @@
+import { ComponentPropsWithoutRef } from 'react'
+
 import { EditTwoOutline } from '@/assets/icon/EditTwoOutline'
 import { Trash } from '@/assets/icon/Trash'
 import { dateTimeFormat } from '@/common/utils'
@@ -13,7 +15,7 @@ import s from './cardsTable.module.scss'
 type Props = {
   cards: CardsItems[] | undefined
   isOwner: boolean
-}
+} & ComponentPropsWithoutRef<'table'>
 
 const columns: Column[] = [
   { cols: '3', key: 'question', title: 'Question' },
@@ -22,9 +24,9 @@ const columns: Column[] = [
   { cols: '2', key: 'grade', title: 'Grade' },
 ]
 
-export const CardsTable = ({ cards, isOwner }: Props) => {
+export const CardsTable = ({ cards, isOwner, ...rest }: Props) => {
   return (
-    <Table.Root>
+    <Table.Root {...rest}>
       <TableSortHeader columns={columns} />
       <Table.Body>
         {cards?.map(card => (
