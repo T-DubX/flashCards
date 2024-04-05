@@ -1,13 +1,24 @@
-import { Link, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useLocation, useParams } from 'react-router-dom'
 
 import { ArrowBack } from '@/assets/icon/ArrowBack'
+import { SELECT_OPTIONS_PAGINATION } from '@/common/const'
 import { Container } from '@/components/container'
 import { CardsTable } from '@/components/deck/cardsTable'
 import { DeckDropDown } from '@/components/deck/deckDropDown'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Pagination } from '@/components/ui/pagination'
 import { Typography } from '@/components/ui/typography'
 import { useGetMeQuery } from '@/services/auth'
+import { setCurrentPage, setPageSize } from '@/services/deck'
+import {
+  selectDeckCurrentPage,
+  selectDeckOrderBy,
+  selectDeckPageSize,
+  selectDeckQuestion,
+} from '@/services/deck/deck.selector'
 import { useGetCardsQuery, useGetDeckQuery } from '@/services/deck/deck.service'
 import clsx from 'clsx'
 
@@ -15,18 +26,42 @@ import s from './deck.module.scss'
 
 export const Deck = () => {
   const params = useParams()
+  const location = useLocation()
+  const dispatch = useDispatch()
   const deckId = params.deckId ?? ''
+
+  useEffect(() => {
+    if (location.pathname.includes(deckId)) {
+      dispatch(setCurrentPage(1))
+      dispatch(setPageSize(5))
+    }
+  }, [location, deckId, dispatch])
+
+  const currentPage = useSelector(selectDeckCurrentPage)
+  const itemsPerPage = useSelector(selectDeckPageSize)
+  const orderBy = useSelector(selectDeckOrderBy)
+  const question = useSelector(selectDeckQuestion)
 
   const { data: deckData } = useGetDeckQuery({ id: deckId })
   const { data: me } = useGetMeQuery()
   const { data: cardsData } = useGetCardsQuery({
+    currentPage,
     id: deckId,
+    itemsPerPage,
+    orderBy: orderBy ?? undefined,
+    question,
   })
 
   const isOwner = deckData?.userId === me?.id
   const isDeckEmpty = deckData?.cardsCount === 0
 
-  console.log(deckData?.cardsCount)
+  const handleChangePage = (page: number) => {
+    dispatch(setCurrentPage(page))
+  }
+
+  const handleChangeSelectOption = (select: string) => {
+    dispatch(setPageSize(Number(select)))
+  }
 
   const headerDeckClasses = clsx(s.headerDeck, {
     [s.emptyDeck]: (isOwner && isDeckEmpty) || (!isOwner && isDeckEmpty),
@@ -71,6 +106,14 @@ export const Deck = () => {
         <div className={s.mainContent}>
           <Input placeholder={'Input search'} type={'search'} />
           <CardsTable cards={cardsData?.items} className={s.cardsTable} isOwner={isOwner} />
+          <Pagination
+            currentPage={currentPage}
+            onChangePage={handleChangePage}
+            onValueChange={handleChangeSelectOption}
+            options={SELECT_OPTIONS_PAGINATION}
+            pageSize={itemsPerPage}
+            totalCount={cardsData?.pagination.totalPages ?? 1}
+          />
         </div>
       )}
     </Container>
