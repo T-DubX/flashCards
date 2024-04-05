@@ -34,9 +34,13 @@
     align-items: center;
     justify-content: space-between;
 
+    margin-top: 36px;
+    margin-bottom: 25px;
+
     .headerLeft {
       display: flex;
       flex-direction: column;
+      gap: 15px;
 
       .deckNameWrapper {
         display: flex;
@@ -51,6 +55,22 @@
     .headerBtn,
     .headerLink {
       align-self: flex-start;
+    }
+
+    .emptyBlock {
+      .emptyBlockBtn {
+        margin: 0 auto;
+        margin-top: 30px;
+      }
+    }
+  }
+
+  .emptyDeck {
+    flex-direction: column;
+
+    .headerLeft {
+      align-self: flex-start;
+      margin-bottom: 69px;
     }
   }
 
