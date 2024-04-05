@@ -1,0 +1,16 @@
+.questionCell,
+.answerCell {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0;
+
+  p {
+    margin: 0;
+  }
+}
+
+.img {
+  width: 118px;
+  height: 48px;
+  object-fit: cover;
+}

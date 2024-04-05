@@ -34,9 +34,43 @@
     align-items: center;
     justify-content: space-between;
 
-    .deckNameWrapper {
+    margin-top: 36px;
+    margin-bottom: 25px;
+
+    .headerLeft {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      gap: 15px;
+
+      .deckNameWrapper {
+        display: flex;
+        align-items: center;
+
+        .title {
+          margin: 0;
+        }
+      }
+    }
+
+    .headerBtn,
+    .headerLink {
+      align-self: flex-start;
+    }
+
+    .emptyBlock {
+      .emptyBlockBtn {
+        margin: 0 auto;
+        margin-top: 30px;
+      }
+    }
+  }
+
+  .emptyDeck {
+    flex-direction: column;
+
+    .headerLeft {
+      align-self: flex-start;
+      margin-bottom: 69px;
     }
   }
 
@@ -48,6 +82,12 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+  }
+
+  .mainContent {
+    .cardsTable {
+      margin: 24px 0;
     }
   }
 }

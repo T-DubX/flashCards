@@ -7,7 +7,7 @@ const deckService = baseApi.injectEndpoints({
       providesTags: ['Deck'],
       query: ({ id, ...args }) => ({
         params: args,
-        url: `/v1/decks/${id}`,
+        url: `/v1/decks/${id}/cards`,
       }),
     }),
     getDeck: builder.query<GetDeckResponse, { id: string }>({
@@ -19,4 +19,4 @@ const deckService = baseApi.injectEndpoints({
   }),
 })
 
-export const { useGetDeckQuery } = deckService
+export const { useGetCardsQuery, useGetDeckQuery } = deckService
