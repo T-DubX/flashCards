@@ -4,6 +4,7 @@ import { ArrowBack } from '@/assets/icon/ArrowBack'
 import { profileData } from '@/common/utils'
 import { Button, Typography } from '@/components/auth/forgotPassword'
 import { PersonalInformation } from '@/components/personalInformation'
+import { ImageSchema } from '@/components/personalInformation/avatarUploader/AvatarUploader'
 import { useGetMeQuery, useLogoutMutation, useUpdateDataProfileMutation } from '@/services/auth'
 
 import s from './profileInformationPage.module.scss'
@@ -15,6 +16,14 @@ export const ProfileInformationPage = () => {
 
   const personData = profileData(data)
 
+  const handleUpdateAvatar = async (avatar: ImageSchema) => {
+    const formData = new FormData()
+
+    formData.append('avatar', avatar)
+
+    await updateData(formData).unwrap()
+  }
+
   return (
     <div className={s.wrapper}>
       <Button as={Link} className={s.linkBack} to={'/'} variant={'link'}>
@@ -24,6 +33,7 @@ export const ProfileInformationPage = () => {
         className={s.personDataBlock}
         data={personData}
         logout={logout}
+        updateAvatar={handleUpdateAvatar}
         updateNickname={updateData}
       />
     </div>

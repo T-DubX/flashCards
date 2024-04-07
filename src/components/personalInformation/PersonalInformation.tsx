@@ -20,6 +20,7 @@ export type PersonalInformationProps = {
   className?: string
   data?: ProfileData
   logout: () => void
+  updateAvatar: (data: File) => Promise<void>
   updateNickname: (data: FormValues) => void
 }
 
@@ -27,6 +28,7 @@ export const PersonalInformation = ({
   className,
   data,
   logout,
+  updateAvatar,
   updateNickname,
 }: PersonalInformationProps) => {
   const [edit, setEdit] = useState(false)
@@ -39,7 +41,12 @@ export const PersonalInformation = ({
       <Typography className={s.cardTitle} variant={'h1'}>
         Personal Information
       </Typography>
-      <AvatarUploader className={s.avatar} editable={!edit} />
+      <AvatarUploader
+        avatar={data?.avatar}
+        className={s.avatar}
+        editable={!edit}
+        updateAvatar={updateAvatar}
+      />
       {edit ? (
         <ProfileInfoEditing
           deactivateEditMode={deactivateEditMode}
