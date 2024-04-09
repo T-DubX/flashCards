@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Button, FormInput } from '@/components/auth/forgotPassword'
 import { FormCheckbox } from '@/components/auth/signIn'
+import { FileUploader } from '@/components/ui/fileUploader'
 import { Modal } from '@/components/ui/modal'
 import { useCreateNewDeckMutation } from '@/services/decks'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -30,11 +32,20 @@ export const CreateNewDeckModal = ({ onOpenChange, open }: Props) => {
     resolver: zodResolver(schema),
   })
 
+  const [img, setImg] = useState('')
+
   const [createNewDeck] = useCreateNewDeckMutation()
 
   const onSubmit = async (data: FormValues) => {
+    const formData = new FormData()
+
+    console.log(data)
+
+    formData.append('cover', '')
+    formData.append('name', data.name)
+    formData.append('isPrivate', data.isPrivate ? 'true' : 'false')
     try {
-      await createNewDeck({ ...data, cover: '' }).unwrap()
+      await createNewDeck(formData).unwrap()
 
       reset()
       onOpenChange(false)
@@ -42,6 +53,8 @@ export const CreateNewDeckModal = ({ onOpenChange, open }: Props) => {
       console.log(error)
     }
   }
+
+  const trigger = <Button fullWidth variant={'secondary'}><ImageOut</Button>
 
   return (
     <Modal onOpenChange={onOpenChange} open={open} title={'Add New Deck'}>
@@ -52,6 +65,7 @@ export const CreateNewDeckModal = ({ onOpenChange, open }: Props) => {
           label={'Name Deck'}
           name={'name'}
         />
+        <FileUploader trigger={trigger} />
         <FormCheckbox
           className={s.checkbox}
           control={control}

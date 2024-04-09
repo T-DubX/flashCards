@@ -2,7 +2,7 @@ import { ComponentPropsWithRef } from 'react'
 
 type Props = ComponentPropsWithRef<'svg'>
 
-export const Email = ({ className, onClick, ...rest }: Props) => {
+export const ImageOutline = ({ className, onClick, ...rest }: Props) => {
   return (
     <svg
       className={className}
