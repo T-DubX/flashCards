@@ -42,7 +42,7 @@ export const authService = baseApi.injectEndpoints({
         url: '/v1/auth/sign-up',
       }),
     }),
-    updateDataProfile: builder.mutation<User, FormValues>({
+    updateDataProfile: builder.mutation<User, FormData | FormValues>({
       invalidatesTags: ['Me'],
       query: args => ({
         body: args,
