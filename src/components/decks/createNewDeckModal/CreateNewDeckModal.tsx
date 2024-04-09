@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Button, FormInput } from '@/components/auth/forgotPassword'
+import { ImageOutline } from '@/assets/icon/ImageOutline'
+import { Button, FormInput, Typography } from '@/components/auth/forgotPassword'
 import { FormCheckbox } from '@/components/auth/signIn'
 import { FileUploader } from '@/components/ui/fileUploader'
-import { Modal } from '@/components/ui/modal'
+import { CloseIcon, Modal } from '@/components/ui/modal'
 import { useCreateNewDeckMutation } from '@/services/decks'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -32,16 +33,15 @@ export const CreateNewDeckModal = ({ onOpenChange, open }: Props) => {
     resolver: zodResolver(schema),
   })
 
-  const [img, setImg] = useState('')
+  const [img, setImg] = useState<File | null>(null)
+  const fileRef = useRef<HTMLInputElement>(null)
 
   const [createNewDeck] = useCreateNewDeckMutation()
 
   const onSubmit = async (data: FormValues) => {
     const formData = new FormData()
 
-    console.log(data)
-
-    formData.append('cover', '')
+    formData.append('cover', img ?? '')
     formData.append('name', data.name)
     formData.append('isPrivate', data.isPrivate ? 'true' : 'false')
     try {
@@ -54,7 +54,26 @@ export const CreateNewDeckModal = ({ onOpenChange, open }: Props) => {
     }
   }
 
-  const trigger = <Button fullWidth variant={'secondary'}><ImageOut</Button>
+  const handleDeleteSelectImg = () => setImg(null)
+
+  const handleUpload = () => {
+    fileRef.current?.click()
+  }
+
+  const trigger = (
+    <Button
+      as={'span'}
+      className={s.trigger}
+      fullWidth
+      onClick={handleUpload}
+      variant={'secondary'}
+    >
+      <ImageOutline />
+      <Typography className={s.triggerText} variant={'subtitle2'}>
+        Upload Image
+      </Typography>
+    </Button>
+  )
 
   return (
     <Modal onOpenChange={onOpenChange} open={open} title={'Add New Deck'}>
@@ -65,7 +84,15 @@ export const CreateNewDeckModal = ({ onOpenChange, open }: Props) => {
           label={'Name Deck'}
           name={'name'}
         />
-        <FileUploader trigger={trigger} />
+        <FileUploader ref={fileRef} setFile={setImg} trigger={trigger} />
+        {img && (
+          <div className={s.wrapperSelectImg}>
+            <img alt={''} className={s.selectImg} src={URL.createObjectURL(img)} />
+            <Button className={s.deleteImgBtn} onClick={handleDeleteSelectImg} variant={'icon'}>
+              <CloseIcon />
+            </Button>
+          </div>
+        )}
         <FormCheckbox
           className={s.checkbox}
           control={control}
@@ -77,7 +104,7 @@ export const CreateNewDeckModal = ({ onOpenChange, open }: Props) => {
           <Button onClick={() => onOpenChange(false)} variant={'secondary'}>
             Cancel
           </Button>
-          <Button>Add New Pack</Button>
+          <Button type={'submit'}>Add New Pack</Button>
         </div>
       </form>
     </Modal>
