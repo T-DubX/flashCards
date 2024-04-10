@@ -8,6 +8,7 @@ import { Container } from '@/components/container'
 import { CreateNewDeckModal } from '@/components/decks/createNewDeckModal'
 import { DecksTable } from '@/components/decks/decksTable'
 import { DeleteDeckModal } from '@/components/decks/deleteDeckModal'
+import { EditDeckModal } from '@/components/decks/editDeckModal'
 import { Sort } from '@/components/tableSortHeader'
 import { Input } from '@/components/ui/input'
 import { Pagination } from '@/components/ui/pagination'
@@ -44,6 +45,7 @@ export const Decks = () => {
 
   const [createDeckModalOpen, setCreateDeckModalOpen] = useState(false)
   const [deleteDeckId, setDeleteDeckId] = useState<null | string>(null)
+  const [editDeckId, setEditDeckId] = useState<null | string>(null)
   const [name, setName] = useState('')
 
   const dispatch = useDispatch<AppDispatch>()
@@ -106,10 +108,19 @@ export const Decks = () => {
   }
 
   const deckToDeleteName = data?.items?.find(deck => deck.id === deleteDeckId)?.name
+  const deckToEditName = data?.items?.find(deck => deck.id === editDeckId)?.name
+  const deckImg = data?.items?.find(deck => deck.id === editDeckId)?.cover
 
   return (
     <Container className={s.wrapper}>
       <CreateNewDeckModal onOpenChange={handleCreateDeck} open={createDeckModalOpen} />
+      <EditDeckModal
+        id={editDeckId ?? ''}
+        img={deckImg ?? ''}
+        name={deckToEditName ?? ''}
+        onOpenChange={() => setEditDeckId(null)}
+        open={!!editDeckId}
+      />
       <DeleteDeckModal
         deckName={deckToDeleteName ?? ''}
         id={deleteDeckId ?? ''}
@@ -164,7 +175,7 @@ export const Decks = () => {
             currentUserId={currentUserId ?? ''}
             decks={data?.items}
             onDeleteClick={setDeleteDeckId}
-            onEditClick={() => {}}
+            onEditClick={setEditDeckId}
             onSort={handleSort}
             sort={sort}
           />
