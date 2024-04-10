@@ -5,12 +5,14 @@ import { ImageOutline } from '@/assets/icon/ImageOutline'
 import { Button, FormInput, Typography } from '@/components/auth/forgotPassword'
 import { FormCheckbox } from '@/components/auth/signIn'
 import { FileUploader } from '@/components/ui/fileUploader'
-import { CloseIcon, Modal } from '@/components/ui/modal'
+import { Modal } from '@/components/ui/modal'
 import { useCreateNewDeckMutation } from '@/services/decks'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import s from './createNewDecksModal.module.scss'
+
+import { SelectImg } from '../editDeckModal/selectImg/SelectImg'
 
 type Props = {
   onOpenChange: (isOpen: boolean) => void
@@ -86,12 +88,7 @@ export const CreateNewDeckModal = ({ onOpenChange, open }: Props) => {
         />
         <FileUploader ref={fileRef} setFile={setImg} trigger={trigger} />
         {img && (
-          <div className={s.wrapperSelectImg}>
-            <img alt={''} className={s.selectImg} src={URL.createObjectURL(img)} />
-            <Button className={s.deleteImgBtn} onClick={handleDeleteSelectImg} variant={'icon'}>
-              <CloseIcon />
-            </Button>
-          </div>
+          <SelectImg onClickDeleteImg={handleDeleteSelectImg} src={URL.createObjectURL(img)} />
         )}
         <FormCheckbox
           className={s.checkbox}

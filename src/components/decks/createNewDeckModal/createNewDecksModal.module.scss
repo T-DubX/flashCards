@@ -20,25 +20,3 @@
     margin: 0;
   }
 }
-
-.wrapperSelectImg {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 30px;
-
-  .selectImg {
-    width: 70px;
-    height: 50px;
-    object-fit: cover;
-  }
-
-  .deleteImgBtn {
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    svg {
-      margin: 0;
-    }
-  }
-}
