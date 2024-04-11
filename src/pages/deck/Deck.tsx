@@ -1,12 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import { ArrowBack } from '@/assets/icon/ArrowBack'
 import { SELECT_OPTIONS_PAGINATION } from '@/common/const'
 import { Container } from '@/components/container'
 import { CardsTable } from '@/components/deck/cardsTable'
+import { CreateNewCardModal } from '@/components/deck/createNewCardModal'
 import { DeckDropDown } from '@/components/deck/deckDropDown'
+import { EmptyBlock } from '@/components/deck/emptyBlock'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Pagination } from '@/components/ui/pagination'
@@ -28,6 +30,7 @@ export const Deck = () => {
   const params = useParams()
   const location = useLocation()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const deckId = params.deckId ?? ''
 
   useEffect(() => {
@@ -41,6 +44,8 @@ export const Deck = () => {
   const itemsPerPage = useSelector(selectDeckPageSize)
   const orderBy = useSelector(selectDeckOrderBy)
   const question = useSelector(selectDeckQuestion)
+
+  const [createCardModalIsOpen, setCreateCardModalIsOpen] = useState(false)
 
   const { data: deckData } = useGetDeckQuery({ id: deckId })
   const { data: me } = useGetMeQuery()
@@ -63,12 +68,18 @@ export const Deck = () => {
     dispatch(setPageSize(Number(select)))
   }
 
+  const handleCreateCard = (isOpen: boolean) => {
+    setCreateCardModalIsOpen(isOpen)
+    dispatch(setCurrentPage(1))
+  }
+
   const headerDeckClasses = clsx(s.headerDeck, {
     [s.emptyDeck]: (isOwner && isDeckEmpty) || (!isOwner && isDeckEmpty),
   })
 
   return (
     <Container className={s.wrapper}>
+      <CreateNewCardModal onOpenChange={handleCreateCard} open={createCardModalIsOpen} />
       <Button as={Link} className={s.linkBack} to={'/'} variant={'link'}>
         <ArrowBack /> <Typography as={'span'}>Back to Decks List</Typography>
       </Button>
@@ -92,12 +103,18 @@ export const Deck = () => {
             Learn to Pack
           </Button>
         )}
-        {isOwner && isDeckEmpty && (
+        {isDeckEmpty && isOwner && (
           <div className={s.emptyBlock}>
             <Typography variant={'body1'}>
               This pack is empty. Click add new card to fill this pack
             </Typography>
-            <Button className={s.emptyBlockBtn}>Add New Card</Button>
+            <Button
+              as={'button'}
+              className={s.emptyBlockBtn}
+              onClick={() => setCreateCardModalIsOpen(true)}
+            >
+              Add New Card
+            </Button>
           </div>
         )}
         {!isOwner && isDeckEmpty && <Typography variant={'body1'}>This pack is empty.</Typography>}

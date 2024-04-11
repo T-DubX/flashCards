@@ -48,7 +48,8 @@ export type DeleteDeckArgs = {
 }
 
 export type UpdateDeckArgs = {
+  data: FormData
   id: string
-} & Partial<CreateDeckArgs>
+}
 
 export type DeleteDeck = Omit<Deck, 'author'>
