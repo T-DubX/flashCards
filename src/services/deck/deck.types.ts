@@ -1,4 +1,4 @@
-import { Deck, Pagination } from '@/services/decks'
+import { Deck, DeleteDeckArgs, Pagination } from '@/services/decks'
 
 export type GetDeckResponse = Omit<Deck, 'author'>
 
@@ -36,3 +36,4 @@ export type CreateCardArgs = {
   id: string
   question: string
 }
+export type DeleteCardArgs = DeleteDeckArgs

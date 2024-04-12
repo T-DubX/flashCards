@@ -80,8 +80,6 @@ export const Deck = () => {
 
   const cardToDeleteName = cardsData?.items?.find(card => card.id === cardToDeleteId)?.question
 
-  console.log(cardToDeleteId)
-
   const headerDeckClasses = clsx(s.headerDeck, {
     [s.emptyDeck]: (isOwner && isDeckEmpty) || (!isOwner && isDeckEmpty),
   })

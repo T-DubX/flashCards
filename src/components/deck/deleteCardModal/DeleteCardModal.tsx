@@ -1,6 +1,6 @@
 import { Button, Modal } from '@/components/ui/modal'
 import { Typography } from '@/components/ui/typography'
-import { useDeleteCardMutation } from '@/services/decks'
+import { useDeleteCardMutation } from '@/services/deck'
 
 import s from './deleteCardModal.module.scss'
 
@@ -16,7 +16,7 @@ export const DeleteCardModal = ({ cardId, cardName, onOpenChange, open }: Props)
 
   const handleDelete = async () => {
     try {
-      await deleteCard(cardId).unwrap()
+      await deleteCard({ id: cardId }).unwrap()
       onOpenChange(false)
     } catch (error) {
       console.log(error)
