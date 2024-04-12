@@ -53,3 +53,5 @@ export type UpdateDeckArgs = {
 }
 
 export type DeleteDeck = Omit<Deck, 'author'>
+
+export type DeleteCardArgs = DeleteDeckArgs

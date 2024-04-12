@@ -8,6 +8,7 @@ import { Container } from '@/components/container'
 import { CardsTable } from '@/components/deck/cardsTable'
 import { CreateNewCardModal } from '@/components/deck/createNewCardModal'
 import { DeckDropDown } from '@/components/deck/deckDropDown'
+import { DeleteCardModal } from '@/components/deck/deleteCardModal'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Pagination } from '@/components/ui/pagination'
@@ -44,6 +45,8 @@ export const Deck = () => {
   const question = useSelector(selectDeckQuestion)
 
   const [createCardModalIsOpen, setCreateCardModalIsOpen] = useState(false)
+  const [deleteCardModalIsOpen, setDeleteCardModalIsOpen] = useState(false)
+  const [cardToDeleteId, setCardToDeleteId] = useState<null | string>(null)
 
   const { data: deckData } = useGetDeckQuery({ id: deckId })
   const { data: me } = useGetMeQuery()
@@ -71,6 +74,14 @@ export const Deck = () => {
     dispatch(setCurrentPage(1))
   }
 
+  const handleDeleteCard = (isOpen: boolean) => {
+    setDeleteCardModalIsOpen(isOpen)
+  }
+
+  const cardToDeleteName = cardsData?.items?.find(card => card.id === cardToDeleteId)?.question
+
+  console.log(cardToDeleteId)
+
   const headerDeckClasses = clsx(s.headerDeck, {
     [s.emptyDeck]: (isOwner && isDeckEmpty) || (!isOwner && isDeckEmpty),
   })
@@ -81,6 +92,12 @@ export const Deck = () => {
         deckId={deckId}
         onOpenChange={handleCreateCard}
         open={createCardModalIsOpen}
+      />
+      <DeleteCardModal
+        cardId={cardToDeleteId ?? ''}
+        cardName={cardToDeleteName ?? 'this card'}
+        onOpenChange={handleDeleteCard}
+        open={deleteCardModalIsOpen}
       />
       <Button as={Link} className={s.linkBack} to={'/'} variant={'link'}>
         <ArrowBack /> <Typography as={'span'}>Back to Decks List</Typography>
@@ -128,7 +145,13 @@ export const Deck = () => {
       {!isDeckEmpty && (
         <div className={s.mainContent}>
           <Input placeholder={'Input search'} type={'search'} />
-          <CardsTable cards={cardsData?.items} className={s.cardsTable} isOwner={isOwner} />
+          <CardsTable
+            cards={cardsData?.items}
+            className={s.cardsTable}
+            isOwner={isOwner}
+            setCardToDeleteId={setCardToDeleteId}
+            setDeleteCardModalIsOpen={setDeleteCardModalIsOpen}
+          />
           <Pagination
             currentPage={currentPage}
             onChangePage={handleChangePage}

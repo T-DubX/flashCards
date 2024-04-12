@@ -1,5 +1,11 @@
 import { baseApi } from '@/services'
-import { Deck, DecksResponse, GetDecksArgs, UpdateDeckArgs } from '@/services/decks/decks.types'
+import {
+  Deck,
+  DecksResponse,
+  DeleteCardArgs,
+  GetDecksArgs,
+  UpdateDeckArgs,
+} from '@/services/decks/decks.types'
 
 const decksService = baseApi.injectEndpoints({
   endpoints: builder => ({
@@ -9,6 +15,13 @@ const decksService = baseApi.injectEndpoints({
         body: args,
         method: 'POST',
         url: `v1/decks`,
+      }),
+    }),
+    deleteCard: builder.mutation<void, DeleteCardArgs>({
+      invalidatesTags: ['Deck'],
+      query: id => ({
+        method: 'DELETE',
+        url: `v1/cards/${id}`,
       }),
     }),
     deleteDeck: builder.mutation<void, string>({
@@ -38,6 +51,7 @@ const decksService = baseApi.injectEndpoints({
 
 export const {
   useCreateNewDeckMutation,
+  useDeleteCardMutation,
   useDeleteDeckMutation,
   useGetDecksQuery,
   useUpdateDeckMutation,

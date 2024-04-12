@@ -15,6 +15,8 @@ import s from './cardsTable.module.scss'
 type Props = {
   cards: CardsItems[] | undefined
   isOwner: boolean
+  setCardToDeleteId: (id: string) => void
+  setDeleteCardModalIsOpen: (isOpen: boolean) => void
 } & ComponentPropsWithoutRef<'table'>
 
 const columns: Column[] = [
@@ -24,7 +26,18 @@ const columns: Column[] = [
   { cols: '2', key: 'grade', title: 'Grade' },
 ]
 
-export const CardsTable = ({ cards, isOwner, ...rest }: Props) => {
+export const CardsTable = ({
+  cards,
+  isOwner,
+  setCardToDeleteId,
+  setDeleteCardModalIsOpen,
+  ...rest
+}: Props) => {
+  const handleDelete = (id: string) => {
+    setCardToDeleteId(id)
+    setDeleteCardModalIsOpen(true)
+  }
+
   return (
     <Table.Root {...rest}>
       <TableSortHeader columns={columns} />
@@ -61,7 +74,7 @@ export const CardsTable = ({ cards, isOwner, ...rest }: Props) => {
                   <Button title={'Edit'} variant={'icon'}>
                     <EditTwoOutline />
                   </Button>
-                  <Button title={'delete'} variant={'icon'}>
+                  <Button onClick={() => handleDelete(card.id)} title={'Delete'} variant={'icon'}>
                     <Trash />
                   </Button>
                 </div>
