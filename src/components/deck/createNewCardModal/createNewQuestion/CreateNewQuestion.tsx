@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Control, useFormContext } from 'react-hook-form'
+import { Control } from 'react-hook-form'
 
 import { ImageOutline } from '@/assets/icon/ImageOutline'
 import { Button, FormInput } from '@/components/auth/forgotPassword'
