@@ -57,11 +57,11 @@ export const CardsTable = ({ cards, isOwner, ...rest }: Props) => {
             <Table.Cell col={'2'}>
               <Rating rating={card.grade} />
               {isOwner && (
-                <div>
-                  <Button variant={'icon'}>
+                <div className={s.buttons}>
+                  <Button title={'Edit'} variant={'icon'}>
                     <EditTwoOutline />
                   </Button>
-                  <Button variant={'icon'}>
+                  <Button title={'delete'} variant={'icon'}>
                     <Trash />
                   </Button>
                 </div>

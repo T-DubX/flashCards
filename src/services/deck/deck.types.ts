@@ -30,3 +30,9 @@ export type CardsItems = {
   updated: string
   userId: string
 }
+
+export type CreateCardArgs = {
+  answer: string
+  id: string
+  question: string
+}
