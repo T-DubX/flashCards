@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input'
 import { Pagination } from '@/components/ui/pagination'
 import { Typography } from '@/components/ui/typography'
 import { useGetMeQuery } from '@/services/auth'
-import { setCurrentPage, setPageSize } from '@/services/deck'
+import { setCurrentPage, setPageSize, setSearch } from '@/services/deck'
 import {
   selectDeckCurrentPage,
   selectDeckOrderBy,
@@ -142,7 +142,12 @@ export const Deck = () => {
       </div>
       {!isDeckEmpty && (
         <div className={s.mainContent}>
-          <Input placeholder={'Input search'} type={'search'} />
+          <Input
+            onChange={e => dispatch(setSearch(e.currentTarget.value))}
+            placeholder={'Input search'}
+            type={'search'}
+            value={question}
+          />
           <CardsTable
             cards={cardsData?.items}
             className={s.cardsTable}

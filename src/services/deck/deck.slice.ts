@@ -15,8 +15,11 @@ export const deckSlice = createSlice({
     setPageSize: (state, action: PayloadAction<number>) => {
       state.pageSize = action.payload
     },
+    setSearch: (state, action: PayloadAction<string>) => {
+      state.question = action.payload
+    },
   },
 })
 
 export const deckReducer = deckSlice.reducer
-export const { setCurrentPage, setPageSize } = deckSlice.actions
+export const { setCurrentPage, setPageSize, setSearch } = deckSlice.actions
