@@ -106,7 +106,9 @@ export const Deck = () => {
             <Typography className={s.title} variant={'h1'}>
               {deckData?.name}
             </Typography>
-            {isOwner && !isDeckEmpty && <DeckDropDown deckId={deckId} />}
+            {isOwner && !isDeckEmpty && (
+              <DeckDropDown deckId={deckId} deckName={deckData?.name ?? 'this Deck'} />
+            )}
           </div>
           {deckData?.cover && !isDeckEmpty && (
             <div className={s.wrapperAvatarDeck}>

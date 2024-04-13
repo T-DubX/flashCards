@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import { Button, Modal } from '@/components/ui/modal'
 import { Typography } from '@/components/ui/typography'
 import { useDeleteDeckMutation } from '@/services/decks'
@@ -5,14 +7,16 @@ import { useDeleteDeckMutation } from '@/services/decks'
 import s from './deleteDeckModal.module.scss'
 
 type Props = {
+  backToPage?: boolean
   deckName: string
   id: string
   onOpenChange: (open: boolean) => void
   open: boolean
 }
 
-export const DeleteDeckModal = ({ deckName, id, onOpenChange, open }: Props) => {
+export const DeleteDeckModal = ({ backToPage, deckName, id, onOpenChange, open }: Props) => {
   const [deleteDeck] = useDeleteDeckMutation()
+  const navigate = useNavigate()
 
   const handleCancel = () => {
     onOpenChange(false)
@@ -20,6 +24,9 @@ export const DeleteDeckModal = ({ deckName, id, onOpenChange, open }: Props) => 
 
   const handleDelete = async () => {
     await deleteDeck(id)
+    if (backToPage) {
+      navigate(-1)
+    }
     handleCancel()
   }
 

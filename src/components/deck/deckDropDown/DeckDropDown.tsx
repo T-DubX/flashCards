@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { More } from '@/assets/icon/More'
+import { DeleteDeckModal } from '@/components/decks/deleteDeckModal'
 import {
   DropDownMenu,
   DropDownMenuStandardItem,
@@ -14,17 +16,30 @@ import s from './deckDropDown.module.scss'
 
 type Props = {
   deckId: string
+  deckName: string
 }
 
-export const DeckDropDown = ({ deckId }: Props) => {
+export const DeckDropDown = ({ deckId, deckName }: Props) => {
+  const [open, setOpen] = useState(false)
   const navigate = useNavigate()
   const trigger = <More />
   const handleSelectLearn = () => {
     navigate(`decks/${deckId}/learn`)
   }
 
+  const handleSelectDelete = () => {
+    setOpen(true)
+  }
+
   return (
     <div className={s.wrapperDropDown}>
+      <DeleteDeckModal
+        backToPage
+        deckName={deckName}
+        id={deckId ?? ''}
+        onOpenChange={setOpen}
+        open={open}
+      />
       <DropDownMenu trigger={trigger}>
         <DropDownMenuStandardItem
           icon={<PlayCircle />}
@@ -34,7 +49,7 @@ export const DeckDropDown = ({ deckId }: Props) => {
         <Separator />
         <DropDownMenuStandardItem icon={<EditTwoOutline />} value={'Edit'} />
         <Separator />
-        <DropDownMenuStandardItem icon={<Trash />} value={'Delete'} />
+        <DropDownMenuStandardItem icon={<Trash />} onSelect={handleSelectDelete} value={'Delete'} />
       </DropDownMenu>
     </div>
   )
