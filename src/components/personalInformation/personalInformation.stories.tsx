@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { PersonalInformation } from '.'
+import { PersonalInformation, ProfileData } from '.'
 
 const meta = {
   argTypes: {},
@@ -22,6 +22,7 @@ export const Default: Story = {
       email: 'person@mail.ru',
       name: 'Joen Dath',
     },
-    updateNickname: (nickName: { nickname: string }) => console.log(nickName),
+    updateAvatar: () => new Promise(res => res()),
+    updateNickname: (data: ProfileData) => console.log(data.name),
   },
 }

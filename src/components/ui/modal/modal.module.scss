@@ -4,14 +4,16 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  max-height: 85vh;
+  width: 100%;
+  max-width: 542px;
+  max-height: 90vh;
 }
 
 .card {
   padding: 0;
 
   .wrapperChildren {
-    max-width: 542px;
+    width: 100%;
     padding: 18px 24px;
   }
 
