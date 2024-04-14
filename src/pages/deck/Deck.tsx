@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, useParams } from 'react-router-dom'
 
-import { ArrowBack } from '@/assets/icon/ArrowBack'
 import { SELECT_OPTIONS_PAGINATION } from '@/common/const'
+import { BackToPage } from '@/components/backToPage/BackToPage'
 import { Container } from '@/components/container'
 import { CardsTable } from '@/components/deck/cardsTable'
 import { CreateNewCardModal } from '@/components/deck/createNewCardModal'
@@ -97,9 +97,7 @@ export const Deck = () => {
         onOpenChange={handleDeleteCard}
         open={deleteCardModalIsOpen}
       />
-      <Button as={Link} className={s.linkBack} to={'/'} variant={'link'}>
-        <ArrowBack /> <Typography as={'span'}>Back to Decks List</Typography>
-      </Button>
+      <BackToPage text={'Back to Decks List'} />
       <div className={headerDeckClasses}>
         <div className={s.headerLeft}>
           <div className={s.deckNameWrapper}>
@@ -122,7 +120,7 @@ export const Deck = () => {
           </Button>
         )}
         {!isOwner && !isDeckEmpty && (
-          <Button as={Link} className={s.headerLink} to={`decks/${params.deckId}/learn`}>
+          <Button as={Link} className={s.headerLink} to={`${location.pathname}/learn`}>
             Learn to Pack
           </Button>
         )}
