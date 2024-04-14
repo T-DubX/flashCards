@@ -4,7 +4,7 @@ import s from './radioGroup.module.scss'
 
 import { RadioGroupRadix, Typography } from '.'
 
-type Option = {
+export type Option = {
   disabled: boolean
   label: string
   value: string
