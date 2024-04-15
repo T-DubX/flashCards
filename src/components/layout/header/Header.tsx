@@ -22,7 +22,7 @@ export const Header = ({ isAuth, profile }: Props) => {
   return (
     <header className={s.header}>
       <Container className={s.headerConatiner}>
-        <Link to={'/'}>
+        <Link className={s.logo} to={'/'}>
           <Logo />
         </Link>
 
