@@ -1,0 +1,25 @@
+.wrapper {
+  margin-bottom: 11px;
+
+  .question {
+    margin-top: 45px;
+    margin-bottom: 18px;
+  }
+
+  .questionImg {
+    width: 320px;
+    height: 120px;
+    margin-bottom: 19px;
+    object-fit: cover;
+  }
+
+  .shots {
+    margin: 0;
+    margin-bottom: 11px;
+    color: var(--color-dark-100);
+  }
+}
+
+.withoutMargin {
+  margin-bottom: 0;
+}

@@ -1,0 +1,18 @@
+.card {
+  align-items: stretch;
+  align-self: center;
+
+  width: 100%;
+  max-width: 420px;
+  margin-top: 32px;
+  padding: 33px 36px 36px;
+
+  .cardTitle {
+    align-self: center;
+    margin: 0;
+  }
+
+  .wrapperHideBlock {
+    width: 100%;
+  }
+}

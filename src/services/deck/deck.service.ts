@@ -38,8 +38,31 @@ const deckService = baseApi.injectEndpoints({
         url: `/v1/decks/${id}`,
       }),
     }),
+    getRandomCard: builder.query<CardsItems, { id: string }>({
+      providesTags: ['Deck'],
+      query: ({ id }) => ({
+        url: `/v1/decks/${id}/learn`,
+      }),
+    }),
+    saveGradeCard: builder.mutation<
+      CardsItems,
+      { args: { cardId: string; grade: number }; id: string }
+    >({
+      invalidatesTags: ['Deck'],
+      query: ({ args, id }) => ({
+        body: args,
+        method: 'POST',
+        url: `/v1/decks/${id}/learn`,
+      }),
+    }),
   }),
 })
 
-export const { useCreateCardMutation, useDeleteCardMutation, useGetCardsQuery, useGetDeckQuery } =
-  deckService
+export const {
+  useCreateCardMutation,
+  useDeleteCardMutation,
+  useGetCardsQuery,
+  useGetDeckQuery,
+  useGetRandomCardQuery,
+  useSaveGradeCardMutation,
+} = deckService

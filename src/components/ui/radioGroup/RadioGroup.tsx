@@ -1,5 +1,7 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
+import clsx from 'clsx'
+
 import s from './radioGroup.module.scss'
 
 import { RadioGroupRadix, Typography } from '.'
@@ -16,10 +18,15 @@ export type RadioProps = {
 } & ComponentPropsWithoutRef<typeof RadioGroupRadix.Root>
 
 export const RadioGroup = forwardRef<ElementRef<typeof RadioGroupRadix.Root>, RadioProps>(
-  ({ disabledAll, options, ...rest }, ref) => {
+  ({ className, disabledAll, options, ...rest }, ref) => {
     return (
       <div>
-        <RadioGroupRadix.Root className={s.radioRoot} disabled={disabledAll} ref={ref} {...rest}>
+        <RadioGroupRadix.Root
+          className={clsx(s.radioRoot, className)}
+          disabled={disabledAll}
+          ref={ref}
+          {...rest}
+        >
           {options.map((option, idx) => (
             <div className={s.wrapperBox} key={idx}>
               <RadioGroupRadix.Item
