@@ -45,3 +45,14 @@ export const DisabledAll: Story = {
     ],
   },
 }
+
+export const WithDefaultValue: Story = {
+  args: {
+    defaultValue: '4',
+    options: [
+      { disabled: false, label: 'hello', value: '2' },
+      { disabled: false, label: 'hello1', value: '3' },
+      { disabled: false, label: 'hello2', value: '4' },
+    ],
+  },
+}
