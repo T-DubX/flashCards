@@ -1,22 +1,21 @@
-.main {
-  position: relative;
-  width: 100%;
-  padding: 24px 0;
-  background-color: var(--color-dark-900);
-}
-
 .layout {
   height: 100vh;
 
   // padding - height header
   // padding-top: 80px;
-}
+  .main {
+    position: relative;
+    width: 100%;
+    padding: 24px 0;
+    background-color: var(--color-dark-900);
+  }
 
-.spinner {
-  align-self: center;
-  margin: 0 auto;
-}
+  .spinner {
+    align-self: center;
+    margin: 0 auto;
+  }
 
-.container {
-  justify-content: center;
+  .container {
+    justify-content: center;
+  }
 }
