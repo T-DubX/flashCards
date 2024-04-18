@@ -12,8 +12,8 @@ export type Grade = {
 }
 
 type Props = {
-  cardId: string | undefined
   className?: string
+  handleHideAnswer: () => void
   onSubmit: (data: Grade) => void
 }
 
@@ -28,26 +28,17 @@ export const Rate = ({ className, onSubmit }: Props) => {
 
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      grade: 1,
+      grade: '1',
     },
   })
 
-  const handleSubmitFrom = (data: any) => onSubmit(data)
-
   return (
-    <form className={clsx(s.form, className)} onSubmit={handleSubmit(handleSubmitFrom)}>
+    <form className={clsx(s.form, className)} onSubmit={handleSubmit(onSubmit)}>
       <Typography className={s.title} variant={'subtitle1'}>
         Rate yourself:
       </Typography>
 
-      <FormRadioGroup
-        className={s.radioGroup}
-        control={control}
-        // defaultVal={options[0].value}
-        defaultValue={options[0].value}
-        name={'grade'}
-        options={options}
-      />
+      <FormRadioGroup className={s.radioGroup} control={control} name={'grade'} options={options} />
       <Button fullWidth type={'submit'}>
         Next Question
       </Button>
