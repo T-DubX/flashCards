@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { More } from '@/assets/icon/More'
 import { DeleteDeckModal } from '@/components/decks/deleteDeckModal'
@@ -22,9 +22,10 @@ type Props = {
 export const DeckDropDown = ({ deckId, deckName }: Props) => {
   const [open, setOpen] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
   const trigger = <More />
   const handleSelectLearn = () => {
-    navigate(`decks/${deckId}/learn`)
+    navigate(`${location.pathname}/learn`)
   }
 
   const handleSelectDelete = () => {
