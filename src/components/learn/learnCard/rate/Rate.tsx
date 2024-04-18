@@ -8,7 +8,7 @@ import clsx from 'clsx'
 import s from './rate.module.scss'
 
 export type Grade = {
-  grade: '1' | '2' | '3' | '4' | '5' | 1 | 2 | 3 | 4 | 5
+  grade: '1' | '2' | '3' | '4' | '5' | 1 | 2 | 3 | 4 | 5 | string
 }
 
 type Props = {
