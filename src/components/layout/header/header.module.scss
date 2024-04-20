@@ -1,4 +1,7 @@
 .header {
+  display: flex;
+  align-items: center;
+
   // position: absolute;
   // z-index: 10;
   // top: 0;
@@ -6,6 +9,7 @@
   // left: 0;
 
   padding: 2px 0;
+
   background-color: var(--color-dark-700);
   border-bottom: 1px solid var(--color-dark-500);
 
@@ -18,5 +22,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-height: 56px;
   }
 }
