@@ -13,33 +13,31 @@ import { Sort } from '@/components/tableSortHeader'
 import { Input } from '@/components/ui/input'
 import { Pagination } from '@/components/ui/pagination'
 import { Slider } from '@/components/ui/slider'
+import { Spinner } from '@/components/ui/spinner'
 import { Tabs } from '@/components/ui/tabs'
 import { Typography } from '@/components/ui/typography'
 import { useGetMeQuery } from '@/services/auth'
 import {
   selectDecksCurrentPage,
   selectDecksCurrentTab,
-  selectDecksMaxCards,
-  selectDecksMinCards,
   selectDecksOrderBy,
   selectDecksPageSize,
   setCurrentPage,
   setCurrentTab,
-  setMaxCards,
-  setMinCards,
   setOrderBy,
   setPageSize,
   useGetDecksQuery,
+  useGetMinMaxDeckQuery,
 } from '@/services/decks'
 import { AppDispatch } from '@/services/store'
 
 import s from './Decks.module.scss'
 
+import { useDecksSearchParams } from '../../common/hooks/useDeckSearchParams'
+
 export const Decks = () => {
   const currentTab = useSelector(selectDecksCurrentTab)
   const currentPage = useSelector(selectDecksCurrentPage)
-  const minCardsCount = useSelector(selectDecksMinCards)
-  const maxCardsCount = useSelector(selectDecksMaxCards)
   const pageSize = useSelector(selectDecksPageSize)
   const sort = useSelector(selectDecksOrderBy)
 
@@ -54,12 +52,16 @@ export const Decks = () => {
   const currentUserId = me?.id
   const authorId = currentTab === 'myDecks' ? currentUserId : undefined
 
-  const { data } = useGetDecksQuery({
+  const { changeMinMaxCard, maxCards, minCards, rangeValue } = useDecksSearchParams()
+
+  const { data: minMaxData } = useGetMinMaxDeckQuery()
+
+  const { data, isLoading } = useGetDecksQuery({
     authorId,
     currentPage,
-    // itemsPrePage: pageSize,
-    maxCardsCount,
-    minCardsCount,
+    itemsPerPage: pageSize,
+    maxCardsCount: maxCards,
+    minCardsCount: minCards,
     name,
     orderBy: sort ? `${sort.key}-${sort.direction}` : undefined,
   })
@@ -84,18 +86,11 @@ export const Decks = () => {
     dispatch(setPageSize(numberValue))
   }
 
-  const handleMinMaxChangeValue = (value: number[]) => {
-    dispatch(setMinCards(value[0]))
-    dispatch(setMaxCards(value[1]))
-    dispatch(setCurrentPage(1))
-  }
-
   const handleClearFilter = () => {
-    setName('')
     dispatch(setCurrentPage(1))
-    dispatch(setMinCards(0))
-    dispatch(setMaxCards(10))
     dispatch(setCurrentTab({ authorId: me?.id ?? undefined, tab: 'allDecks' }))
+    changeMinMaxCard([0, minMaxData?.max ?? 50])
+    setName('')
   }
 
   const handleSort = (sort: Sort) => {
@@ -105,6 +100,10 @@ export const Decks = () => {
   const handleChangeSearch = (value: string) => {
     setName(value)
     dispatch(setCurrentPage(1))
+  }
+
+  if (isLoading) {
+    return <Spinner />
   }
 
   const deckToDeleteName = data?.items?.find(deck => deck.id === deleteDeckId)?.name
@@ -153,12 +152,7 @@ export const Decks = () => {
         </div>
         <div className={s.sliderWrapper}>
           <Typography className={s.titleControlBlockItem}>Number of cards</Typography>
-          <Slider
-            // max={maxCards}
-            // min={minCards}
-            onValueChange={handleMinMaxChangeValue}
-            value={[minCardsCount, maxCardsCount ?? 10]}
-          />
+          <Slider max={minMaxData?.max ?? 50} onValueChange={changeMinMaxCard} value={rangeValue} />
         </div>
         <Button className={s.clearBtn} onClick={handleClearFilter} variant={'secondary'}>
           <Trash /> <Typography as={'span'}>Clear Filter</Typography>
