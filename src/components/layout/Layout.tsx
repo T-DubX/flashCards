@@ -6,7 +6,6 @@ import { useGetMeQuery } from '@/services/auth'
 import s from './layout.module.scss'
 
 import { Container } from '../container'
-import { Spinner } from '../ui/spinner'
 import { Header } from './header'
 
 export const Layout = () => {
@@ -20,11 +19,7 @@ export const Layout = () => {
       <Header isAuth={isAuth} profile={profile} />
       <main className={s.main}>
         <Container className={s.container}>
-          {isLoading ? (
-            <Spinner className={s.spinner} />
-          ) : (
-            <Outlet context={{ isAuthenticated: isAuth }} />
-          )}
+          {!isLoading && <Outlet context={{ isAuthenticated: isAuth }} />}
         </Container>
       </main>
     </div>

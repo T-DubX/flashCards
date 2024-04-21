@@ -30,7 +30,7 @@ export type Pagination = {
 export type GetDecksArgs = {
   authorId?: string
   currentPage?: number
-  itemsPrePage?: number
+  itemsPerPage?: number
   maxCardsCount?: number
   minCardsCount?: number
   name?: string
@@ -53,3 +53,8 @@ export type UpdateDeckArgs = {
 }
 
 export type DeleteDeck = Omit<Deck, 'author'>
+
+export type MinMaxDeckResponse = {
+  max: number
+  min: number
+}

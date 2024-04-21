@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { ImageOutline } from '@/assets/icon/ImageOutline'
@@ -55,6 +55,13 @@ export const CreateNewDeckModal = ({ onOpenChange, open }: Props) => {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    if (!open) {
+      setImg(null)
+      reset()
+    }
+  }, [open])
 
   const handleDeleteSelectImg = () => setImg(null)
 

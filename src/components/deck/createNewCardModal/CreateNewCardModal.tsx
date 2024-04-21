@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/auth/forgotPassword'
@@ -60,6 +60,14 @@ export const CreateNewCardModal = ({ deckId, onOpenChange, open }: Props) => {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    if (!open) {
+      setQuestionImg(null)
+      setAnswerImg(null)
+      reset()
+    }
+  }, [open])
 
   return (
     <Modal onOpenChange={onOpenChange} open={open} title={'Add New Card'}>
