@@ -54,7 +54,7 @@ export const Decks = () => {
 
   const { changeMinMaxCard, maxCards, minCards, rangeValue } = useDecksSearchParams()
 
-  const { data: minMaxData } = useGetMinMaxDeckQuery()
+  const { data: minMaxData, isLoading: isLoadingMinMax } = useGetMinMaxDeckQuery()
 
   const { data, isLoading } = useGetDecksQuery({
     authorId,
@@ -102,7 +102,7 @@ export const Decks = () => {
     dispatch(setCurrentPage(1))
   }
 
-  if (isLoading) {
+  if (isLoading && isLoadingMinMax) {
     return <Spinner />
   }
 
