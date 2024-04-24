@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Trash } from '@/assets/icon/Trash'
@@ -65,6 +65,10 @@ export const Decks = () => {
     name,
     orderBy: sort ? `${sort.key}-${sort.direction}` : undefined,
   })
+
+  useEffect(() => {
+    changeMinMaxCard([0, minMaxData?.max ?? 50])
+  }, [minMaxData])
 
   const handleCurrentTab = (value: string) => {
     dispatch(setCurrentTab({ authorId: me?.id ?? undefined, tab: value }))
