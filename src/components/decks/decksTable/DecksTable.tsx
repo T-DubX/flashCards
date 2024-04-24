@@ -45,6 +45,7 @@ const columns: Column[] = [
   {
     cols: '1',
     key: 'actions',
+    sortable: false,
     title: '',
   },
 ]
