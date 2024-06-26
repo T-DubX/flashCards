@@ -1,4 +1,3 @@
-import { MouseEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { ArrowBack } from '@/assets/icon/ArrowBack'

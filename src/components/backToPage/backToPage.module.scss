@@ -1,27 +1,27 @@
 .linkBack {
-    all: unset;
+  all: unset;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    align-self: flex-start;
+  align-self: flex-start;
 
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 
-    color: var(--color-light-100);
-    text-decoration: none;
+  color: var(--color-light-100);
+  text-decoration: none;
+
+  svg {
+    position: relative;
+    top: -1px;
+  }
+
+  &:hover {
+    color: var(--color-accent-500);
 
     svg {
-      position: relative;
-      top: -1px;
-    }
-
-    &:hover {
-      color: var(--color-accent-500);
-
-      svg {
-        path {
-          fill: var(--color-accent-500);
-        }
+      path {
+        fill: var(--color-accent-500);
       }
     }
   }
+}

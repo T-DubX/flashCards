@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Trash } from '@/assets/icon/Trash'
@@ -65,10 +65,6 @@ export const Decks = () => {
     name,
     orderBy: sort ? `${sort.key}-${sort.direction}` : undefined,
   })
-
-  useEffect(() => {
-    changeMinMaxCard([0, minMaxData?.max ?? 50])
-  }, [minMaxData])
 
   const handleCurrentTab = (value: string) => {
     dispatch(setCurrentTab({ authorId: me?.id ?? undefined, tab: value }))
@@ -164,9 +160,15 @@ export const Decks = () => {
       </div>
 
       <div className={s.decksList}>
-        {data?.items.length === 0 && currentTab === 'myDecks' ? (
+        {data?.items.length === 0 ? (
           <div className={s.emptyMyDecks}>
-            <Typography variant={'body1'}>You don&apos;t have decks</Typography>
+            {currentTab === 'myDecks' ? (
+              <Typography variant={'body1'}>You don&apos;t have decks</Typography>
+            ) : (
+              <Typography className={s.titleDecksNotFound} variant={'body1'}>
+                Decks not found
+              </Typography>
+            )}
           </div>
         ) : (
           <DecksTable
@@ -179,11 +181,6 @@ export const Decks = () => {
           />
         )}
       </div>
-      {data?.items.length === 0 && currentTab !== 'myDecks' && (
-        <Typography className={s.titleDecksNotFound} variant={'body1'}>
-          Decks not found
-        </Typography>
-      )}
 
       <Pagination
         className={s.pagination}
