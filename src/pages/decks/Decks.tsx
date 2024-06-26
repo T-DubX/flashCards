@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Trash } from '@/assets/icon/Trash'
@@ -54,7 +54,7 @@ export const Decks = () => {
 
   const { changeMinMaxCard, maxCards, minCards, rangeValue } = useDecksSearchParams()
 
-  const { data: minMaxData } = useGetMinMaxDeckQuery()
+  const { data: minMaxData, isLoading: isLoadingMinMax } = useGetMinMaxDeckQuery()
 
   const { data, isLoading } = useGetDecksQuery({
     authorId,
@@ -65,6 +65,10 @@ export const Decks = () => {
     name,
     orderBy: sort ? `${sort.key}-${sort.direction}` : undefined,
   })
+
+  useEffect(() => {
+    changeMinMaxCard([0, minMaxData?.max ?? 50])
+  }, [minMaxData])
 
   const handleCurrentTab = (value: string) => {
     dispatch(setCurrentTab({ authorId: me?.id ?? undefined, tab: value }))
@@ -102,7 +106,7 @@ export const Decks = () => {
     dispatch(setCurrentPage(1))
   }
 
-  if (isLoading) {
+  if (isLoading && isLoadingMinMax) {
     return <Spinner />
   }
 
