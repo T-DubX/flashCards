@@ -87,7 +87,7 @@ export const DecksTable = ({
             </Table.Cell>
             <Table.Cell col={'1'}>
               <div className={s.wrapperIcons}>
-                <Button title={'Learn'} variant={'icon'}>
+                <Button as={Link} title={'Learn'} to={`/decks/${deck.id}/learn`} variant={'icon'}>
                   <PlayCircle />
                 </Button>
                 {deck.author.id === currentUserId && (
