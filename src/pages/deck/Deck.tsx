@@ -12,6 +12,7 @@ import { DeleteCardModal } from '@/components/deck/deleteCardModal'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Pagination } from '@/components/ui/pagination'
+import { Spinner } from '@/components/ui/spinner'
 import { Typography } from '@/components/ui/typography'
 import { useGetMeQuery } from '@/services/auth'
 import { setCurrentPage, setPageSize, setSearch } from '@/services/deck'
@@ -50,7 +51,7 @@ export const Deck = () => {
 
   const { data: deckData } = useGetDeckQuery({ id: deckId })
   const { data: me } = useGetMeQuery()
-  const { data: cardsData } = useGetCardsQuery({
+  const { data: cardsData, isLoading } = useGetCardsQuery({
     currentPage,
     id: deckId,
     itemsPerPage,
@@ -83,6 +84,10 @@ export const Deck = () => {
   const headerDeckClasses = clsx(s.headerDeck, {
     [s.emptyDeck]: (isOwner && isDeckEmpty) || (!isOwner && isDeckEmpty),
   })
+
+  if (isLoading) {
+    return <Spinner />
+  }
 
   return (
     <Container className={s.wrapper}>
