@@ -5,6 +5,8 @@ import { BackToPage } from '@/components/backToPage/BackToPage'
 import { Container } from '@/components/container'
 import { LearnCard } from '@/components/learn/learnCard'
 import { Grade } from '@/components/learn/learnCard/rate'
+import { Spinner } from '@/components/ui/spinner'
+import { Typography } from '@/components/ui/typography'
 import {
   CardsItems,
   useGetDeckQuery,
@@ -17,8 +19,8 @@ import s from './learnCardPage.module.scss'
 export const LearnCardPage = () => {
   const { deckId } = useParams()
 
-  const { data: card } = useGetRandomCardQuery({ id: deckId ?? '' })
-  const { data: deck } = useGetDeckQuery({ id: deckId ?? '' })
+  const { data: card, isLoading: isLoadingCard } = useGetRandomCardQuery({ id: deckId ?? '' })
+  const { data: deck, isLoading: isLoadingDeck } = useGetDeckQuery({ id: deckId ?? '' })
 
   const [saveGrade] = useSaveGradeCardMutation()
 
@@ -47,17 +49,27 @@ export const LearnCardPage = () => {
     }
   }
 
+  if (isLoadingCard && isLoadingDeck) {
+    return <Spinner />
+  }
+
   return (
     <Container className={s.container}>
       <BackToPage text={'Back to Cards List'} />
-      <LearnCard
-        card={cards}
-        deckName={deck?.name ?? 'Learn Deck'}
-        onHideAnswer={handleHideAnswer}
-        onSaveGrade={handleSaveGrade}
-        onShowAnswer={handleShowAnswer}
-        show={show}
-      />
+      {deck?.cardsCount === 0 ? (
+        <Typography className={s.isEmpty}>
+          This deck is empty. There&apos;s nothing to learn here.
+        </Typography>
+      ) : (
+        <LearnCard
+          card={cards}
+          deckName={deck?.name ?? 'Learn Deck'}
+          onHideAnswer={handleHideAnswer}
+          onSaveGrade={handleSaveGrade}
+          onShowAnswer={handleShowAnswer}
+          show={show}
+        />
+      )}
     </Container>
   )
 }
